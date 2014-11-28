@@ -1,0 +1,2 @@
+alias rtest="RAILS_ENV=test"
+
