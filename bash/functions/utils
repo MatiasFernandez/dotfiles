@@ -45,3 +45,25 @@ fi
 psg () {
   ps aux | grep $1
 }
+
+function publicip {
+  res=$(curl -s checkip.dyndns.org | grep -Eo '[0-9\.]+')
+  echo -e "Your public IP is: ${echo_bold_green} $res ${echo_normal}"
+}
+
+ff() {
+  find . -type f -name $1
+}
+
+# calculator: "? 3+13*3" will print 42
+? () { echo "$*" | bc -l; }
+
+# Run command silently
+quiet () { $* &> /dev/null & }
+
+# Creates a backup of a file
+backup () {
+  local filename=$1
+  local filetime=$(date +%Y%m%d_%H%M%S)
+  cp ${filename} ${filename}_${filetime}
+}
