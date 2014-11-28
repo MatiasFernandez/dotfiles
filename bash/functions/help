@@ -1,8 +1,13 @@
 function functions() {
+  echo "?: Calculator"  
+  echo "backup: backup file"
   echo "extract: Extract files"
+  echo "ff: Find file inside this directory"
   echo "mcd: Makedir and cd"
   echo "psg: Grep over processes"	
+  echo "publicip: Print publicip"
   echo "showpkg: Grep over apt packages"
+  echo "quiet: Execute command silently in background"
   echo "with_each_file: Execute command in each file"
 }
 
