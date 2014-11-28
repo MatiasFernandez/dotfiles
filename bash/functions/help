@@ -1,0 +1,8 @@
+function functions() {
+  echo "extract: Extract files"
+  echo "mcd: Makedir and cd"
+  echo "psg: Grep over processes"	
+  echo "showpkg: Grep over apt packages"
+  echo "with_each_file: Execute command in each file"
+}
+
