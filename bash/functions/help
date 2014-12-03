@@ -4,6 +4,7 @@ function functions() {
   echo "extract: Extract files"
   echo "ff: Find file inside this directory"
   echo "mcd: Makedir and cd"
+  echo "nonascii: Grep to find non ascii characters"
   echo "psg: Grep over processes"	
   echo "publicip: Print publicip"
   echo "showpkg: Grep over apt packages"

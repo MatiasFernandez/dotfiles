@@ -67,3 +67,13 @@ backup () {
   local filetime=$(date +%Y%m%d_%H%M%S)
   cp ${filename} ${filename}_${filetime}
 }
+
+# Within [] ^ means "not". So [^ -~] means characters not between space and ~. 
+# So excluding control chars, this matches non ASCII characters, and is a more portable 
+# though slightly less accurate version of [^\x00-\x7f] below. The \+ means 1 or more and 
+# will get multibye characters to have a color shown around the complete character(s), 
+# rather than interspersed in each byte, thus corrupting the multibyte sequence
+nonascii() { 
+  LANG=C grep --color=always -n '[^ -~]\+'; 
+}
+
