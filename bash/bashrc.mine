@@ -3,3 +3,7 @@ BASE_PATH=~/.dotfiles/bash
 source $BASE_PATH/aliases/base
 source $BASE_PATH/functions/base
 
+if [ -e "$BASE_PATH/gitprompt/gitprompt.sh" ]
+then
+  source $BASE_PATH/gitprompt/gitprompt.sh
+fi
