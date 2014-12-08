@@ -46,7 +46,7 @@ add_function_help "extract" "Extract various file types"
 
 # Grep over processes
 psg () {
-  ps aux | grep $1
+  ps aux | grep -v grep | grep -i -e VSZ -e $1
 }
 add_function_help "psg" "Grep over running processes"
 
