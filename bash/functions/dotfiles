@@ -1,11 +1,14 @@
-export FUNCTIONS_HELP="Available functions\\n"
+GREEN="\e[32m"
+RESET="\e[0m"
+
+export FUNCTIONS_HELP="\\n"
 
 function functions() {
   echo -e $FUNCTIONS_HELP
 }
 
 function add_function_help() {
-  export FUNCTIONS_HELP="${FUNCTIONS_HELP}\\n$1"
+  export FUNCTIONS_HELP="${FUNCTIONS_HELP}$GREEN$1$RESET: $2\\n"
 }
 
 function dotreload() {

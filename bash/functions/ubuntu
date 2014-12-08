@@ -3,4 +3,4 @@ showpkg () {
   apt-cache pkgnames | grep -i "$1" | sort
   return;
 }
-add_function_help "showpkg: Grep over apt packages"
+add_function_help "showpkg" "Grep over apt packages"
