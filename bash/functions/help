@@ -1,14 +1,13 @@
+export FUNCTIONS_HELP="Available functions\\n"
+
 function functions() {
-  echo "?: Calculator"  
-  echo "backup: backup file"
-  echo "extract: Extract files"
-  echo "ff: Find file inside this directory"
-  echo "mcd: Makedir and cd"
-  echo "nonascii: Grep to find non ascii characters"
-  echo "psg: Grep over processes"	
-  echo "publicip: Print publicip"
-  echo "showpkg: Grep over apt packages"
-  echo "quiet: Execute command silently in background"
-  echo "with_each_file: Execute command in each file"
+  echo -e $FUNCTIONS_HELP
 }
 
+function add_function_help() {
+  export FUNCTIONS_HELP="${FUNCTIONS_HELP}\\n$1"
+}
+
+function dotreload() {
+  source ~/.dotfiles/bash/bashrc.mine
+}
