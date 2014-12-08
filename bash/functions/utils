@@ -1,12 +1,14 @@
-function with_each_file(){ 
+function with_each_file(){
  find "$1" -type f -print0 | xargs -0 "${@:2}"
 }
+add_function_help "with_each_file: For each file in directory{1} execute command{2}"
 
 # Create directory and move into it
 mcd () {
     mkdir -p $1
     cd $1
 }
+add_function_help "mcd: Create directory and move into it"
 
 # Extract various file types
 function extract {
@@ -40,26 +42,36 @@ function extract {
     fi
 fi
 }
+add_function_help "extract: Extract various file types"
 
 # Grep over processes
 psg () {
   ps aux | grep $1
 }
+add_function_help "psg: Grep over running processes"
 
 function publicip {
   res=$(curl -s checkip.dyndns.org | grep -Eo '[0-9\.]+')
   echo -e "Your public IP is: ${echo_bold_green} $res ${echo_normal}"
 }
+add_function_help "publicip: Print public IP"
 
 ff() {
-  find . -type f -name $1
+  find $2 -type f -name $1
 }
+add_function_help "ff: Find file{1} inside directory{2}"
 
 # calculator: "? 3+13*3" will print 42
-? () { echo "$*" | bc -l; }
+function ?() { 
+  echo "$*" | bc -l; 
+}
+add_function_help "?: Calculator"
 
 # Run command silently
-quiet () { $* &> /dev/null & }
+function quiet() { 
+  $* &> /dev/null & 
+}
+add_function_help "quiet: Run command silently"
 
 # Creates a backup of a file
 backup () {
@@ -67,13 +79,14 @@ backup () {
   local filetime=$(date +%Y%m%d_%H%M%S)
   cp ${filename} ${filename}_${filetime}
 }
+add_function_help "backup: Create a timestamped copy of a file"
 
 # Within [] ^ means "not". So [^ -~] means characters not between space and ~. 
 # So excluding control chars, this matches non ASCII characters, and is a more portable 
 # though slightly less accurate version of [^\x00-\x7f] below. The \+ means 1 or more and 
 # will get multibye characters to have a color shown around the complete character(s), 
 # rather than interspersed in each byte, thus corrupting the multibyte sequence
-nonascii() { 
-  LANG=C grep --color=always -n '[^ -~]\+'; 
+nonascii() {
+  LANG=C grep --color=always -n '[^ -~]\+' $1
 }
-
+add_function_help "nonascii: Print nonascii characters of a file"
