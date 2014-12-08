@@ -62,7 +62,7 @@ ff() {
 add_function_help "ff" "Find file{1} inside directory{2}"
 
 # calculator: "? 3+13*3" will print 42
-function ?() { 
+function ? () { 
   echo "$*" | bc -l; 
 }
 add_function_help "?" "Calculator"
