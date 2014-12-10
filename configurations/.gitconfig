@@ -3,5 +3,7 @@
 	uncommit = reset HEAD^1
 	br = branch
 	co = checkout
+	ci = commit
+	cm = commit -m
 [push]
 	default = simple
