@@ -1,2 +1,3 @@
 alias rtest="RAILS_ENV=test"
 alias rprod="RAILS_ENV=production"
+alias routesg="rake routes | grep"
