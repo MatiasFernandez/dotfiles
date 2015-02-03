@@ -93,7 +93,8 @@ add_function_help "nonascii" "Print nonascii characters of a file"
 
 # Open a new tab in the active Gnome console window and execute a command in it.
 run_in_tab () {
-  window="$(xdotool search --class gnome-terminal | head -1)"
+  WID=$(xprop -root | grep "_NET_ACTIVE_WINDOW(WINDOW)"| awk '{print $5}')
+  xdotool windowfocus $WID
   xdotool key ctrl+shift+t
   xdotool type "$*"
   xdotool key Return
