@@ -90,3 +90,12 @@ nonascii() {
   LANG=C grep --color=always -n '[^ -~]\+' $1
 }
 add_function_help "nonascii" "Print nonascii characters of a file"
+
+# Open a new tab in the active Gnome console window and execute a command in it.
+run_in_tab () {
+  window="$(xdotool search --class gnome-terminal | head -1)"
+  xdotool key ctrl+shift+t
+  xdotool type "$*"
+  xdotool key Return
+}
+add_function_help "run_in_tab" "Open a new tab in Active Gnome console and run specified command."
