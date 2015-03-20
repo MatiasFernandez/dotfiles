@@ -7,3 +7,8 @@
 	cm = commit -m
 [push]
 	default = simple
+[merge]
+tool = mymeld
+conflictstyle = diff3
+[mergetool "mymeld"]
+cmd = meld --diff $LOCAL $BASE --diff $BASE $REMOTE --diff $LOCAL $BASE $REMOTE --output $MERGED
