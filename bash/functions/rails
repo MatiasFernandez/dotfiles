@@ -1,0 +1,4 @@
+function migr_since() {
+  git whatchanged ${1-master}..HEAD | grep migrate
+}
+add_function_help "migr_since" "Migrations created since commit{1}. Defaults to master"
