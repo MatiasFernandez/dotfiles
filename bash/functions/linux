@@ -1,0 +1,9 @@
+pathappend () {
+  for ARG in "$@"
+  do
+    if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
+        PATH="${PATH:+"$PATH:"}$ARG"
+    fi
+  done
+}
+add_function_help "pathappend" "Append multiple paths {1} to PATH env variable avoiding duplication"
