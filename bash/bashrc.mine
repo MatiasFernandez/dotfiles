@@ -7,3 +7,5 @@ if [ -e "$BASE_PATH/gitprompt/gitprompt.sh" ]
 then
   source $BASE_PATH/gitprompt/gitprompt.sh
 fi
+
+pathappend $BASE_PATH/scripts
