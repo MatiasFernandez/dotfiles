@@ -1,5 +1,6 @@
 ALIASES_PATH=$BASE_PATH/aliases
 
 source $ALIASES_PATH/git
+source $ALIASES_PATH/linux
 source $ALIASES_PATH/ubuntu
 source $ALIASES_PATH/rails
