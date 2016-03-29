@@ -1,6 +1,7 @@
 FUNCTIONS_PATH=$BASE_PATH/functions
 
 source $FUNCTIONS_PATH/dotfiles
+source $FUNCTIONS_PATH/linux
 source $FUNCTIONS_PATH/ubuntu
 source $FUNCTIONS_PATH/utils
 source $FUNCTIONS_PATH/rails
