@@ -5,10 +5,8 @@
 	co = checkout
 	ci = commit
 	cm = commit -m
+	rbi = "!f() { git rebase -i $1~1; }; f"
+    rbc = !EDITOR=cat git rebase --continue
+
 [push]
 	default = simple
-[merge]
-tool = mymeld
-conflictstyle = diff3
-[mergetool "mymeld"]
-cmd = meld --diff $LOCAL $BASE --diff $BASE $REMOTE --diff $LOCAL $BASE $REMOTE --output $MERGED
