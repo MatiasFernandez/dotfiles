@@ -7,6 +7,7 @@
 	cm = commit -m
 	rbi = "!f() { git rebase -i $1~1; }; f"
     rbc = !EDITOR=cat git rebase --continue
+	rbonto = "!f() { git rebase --onto $1 $2~1; }; f"
 
 [push]
 	default = simple
