@@ -57,9 +57,9 @@ function publicip {
 add_function_help "publicip" "Print public IP"
 
 ff() {
-  find $2 -type f -name $1
+  find $2 -type f -regex $1
 }
-add_function_help "ff" "Find file{1} inside directory{2}"
+add_function_help "ff" "Find file matching pattern{1} inside directory{2}"
 
 # calculator: "? 3+13*3" will print 42
 function ? () { 
