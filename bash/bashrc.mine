@@ -10,4 +10,3 @@ fi
 
 pathappend $BASE_PATH/scripts
 
-source $BASE_PATH/extras/install_all
