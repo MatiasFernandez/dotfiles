@@ -2,3 +2,8 @@ function migr_since() {
   git whatchanged ${1-master}..HEAD | grep "db/migrate"
 }
 add_function_help "migr_since" "Migrations created since commit{1}. Defaults to master"
+
+function specg() {
+  find . | fgrep "spec.rb" | grep $1 | xargs bin/rspec
+}
+add_function_help "specg" "Run specs matching pattern{1}"
