@@ -1,15 +1,3 @@
-function with_each_file(){
- find "$1" -type f -print0 | xargs -0 "${@:2}"
-}
-add_function_help "with_each_file" "For each file in directory{1} execute command{2}"
-
-# Create directory and move into it
-mcd () {
-    mkdir -p $1
-    cd $1
-}
-add_function_help "mcd" "Create directory and move into it"
-
 # Extract various file types
 function extract {
  if [ -z "$1" ]; then
