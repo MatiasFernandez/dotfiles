@@ -1,4 +1,0 @@
-for extra in `scriptwd`/*/ 
-do  
-  source $extra/install
-done
