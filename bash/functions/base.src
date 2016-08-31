@@ -12,5 +12,5 @@ function add_function_help() {
 }
 
 function dotreload() {
-  source ~/.dotfiles/bash/bashrc.mine
+  source ~/.bashrc.mine
 }
