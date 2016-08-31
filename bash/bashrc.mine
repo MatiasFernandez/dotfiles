@@ -1,7 +1,9 @@
 BASE_PATH=~/.dotfiles/bash
 
-source $BASE_PATH/aliases/base
-source $BASE_PATH/functions/base
+for file in $BASE_PATH/aliases/* $BASE_PATH/functions/*
+do
+  source $file
+done
 
 if [ -e "$BASE_PATH/gitprompt/gitprompt.sh" ]
 then

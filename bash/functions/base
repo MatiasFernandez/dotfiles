@@ -1,7 +1,16 @@
-FUNCTIONS_PATH=$BASE_PATH/functions
+GREEN="\e[32m"
+RESET="\e[0m"
 
-source $FUNCTIONS_PATH/dotfiles
-source $FUNCTIONS_PATH/linux
-source $FUNCTIONS_PATH/ubuntu
-source $FUNCTIONS_PATH/utils
-source $FUNCTIONS_PATH/dev
+export FUNCTIONS_HELP="\\n"
+
+function functions() {
+  echo -e $FUNCTIONS_HELP
+}
+
+function add_function_help() {
+  export FUNCTIONS_HELP="${FUNCTIONS_HELP}$GREEN$1$RESET: $2\\n"
+}
+
+function dotreload() {
+  source ~/.dotfiles/bash/bashrc.mine
+}
