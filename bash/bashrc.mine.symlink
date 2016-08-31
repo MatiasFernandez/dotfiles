@@ -1,6 +1,6 @@
 BASE_PATH=~/.dotfiles/bash
 
-for file in $BASE_PATH/aliases/* $BASE_PATH/functions/*
+for file in $BASE_PATH/**/*.src
 do
   source $file
 done
