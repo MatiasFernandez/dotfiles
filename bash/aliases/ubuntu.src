@@ -1,3 +1,0 @@
-# Restart ibus-daemon service to unlock keyboard in rubymine
-alias unlock_rubymine='ibus-daemon -rd'
-
