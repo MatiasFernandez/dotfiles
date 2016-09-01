@@ -1,6 +1,11 @@
-#!/bin/bash
-# function Extract for common file formats
+# Grep over apt packages
+showpkg () {
+  apt-cache pkgnames | grep -i "$1" | sort
+  return;
+}
+add_function_help "showpkg" "Grep over apt packages"
 
+# function Extract for common file formats
 function extract {
  if [ -z "$1" ]; then
     # display usage if no parameters given
