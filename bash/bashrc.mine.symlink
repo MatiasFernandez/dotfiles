@@ -12,3 +12,16 @@ fi
 
 pathappend $BASE_PATH/bash/scripts
 
+# Local private dotfiles
+
+PRIVATE_DOTFILES_ROOT=~/.priv-dotfiles
+
+if [ -e $PRIVATE_DOTFILES_ROOT ]
+then
+  for file in $(find -H "$PRIVATE_DOTFILES_ROOT" -maxdepth 2 -name '*.src')
+  do
+  	source $file
+  done
+
+  pathappend $PRIVATE_DOTFILES_ROOT/bin
+fi
