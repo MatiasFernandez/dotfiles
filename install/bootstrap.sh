@@ -144,8 +144,15 @@ install_dotfiles () {
   fi
 }
 
+install_packages () {
+  info 'installing linux packages'
+  
+  $DOTFILES_ROOT/install/install-packages.sh
+}
+
 setup_gitconfig
 install_dotfiles
+install_packages
 
 echo ''
 echo '  All installed!'
