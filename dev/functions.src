@@ -7,3 +7,8 @@ function specg() {
   find . | fgrep "spec.rb" | grep $1 | xargs bin/rspec
 }
 add_function_help "specg" "Run specs matching pattern{1}"
+
+function hp() {
+  git push $1 HEAD:master $2
+}
+add_function_help "hp" "Push to Heroku Remote{1}. Use -f at the end to force push" 
