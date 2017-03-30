@@ -12,3 +12,9 @@ function hp() {
   git push $1 HEAD:master $2
 }
 add_function_help "hp" "Push to Heroku Remote{1}. Use -f at the end to force push" 
+
+function webserver() {
+  ruby -run -e httpd ${1-.} -p ${2-9090}
+}
+add_function_help "webserver" "Expose directory{1} with a web server at port 9090{2}" 
+
