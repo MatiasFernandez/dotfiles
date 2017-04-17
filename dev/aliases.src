@@ -9,6 +9,7 @@ alias rawka="ruby -e"
 
 # Heroku
 alias h="heroku"
+alias hr="heroku run -a"
 alias hrc="heroku run rails c -a"
 
 # Docker
