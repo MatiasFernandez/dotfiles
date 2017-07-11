@@ -1,19 +1,22 @@
 [include]
 	path = ~/.gitconfig.local
 [alias]
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	uncommit = reset HEAD^1
+	alias = "!f() { git config --get-regexp "^alias." ; }; f"
 	br = branch
-	co = checkout
-	ci = commit
-        qci = commit --no-verify
-	cm = commit -m
-        qcm = commit --no-verify -m
-	pushf = push --force-with-lease
-	rbi = "!f() { git rebase -i $1~1; }; f"
-        rbc = !EDITOR=cat git rebase --continue
-	rbonto = "!f() { git rebase --onto $1 $2~1; }; f"
-	fch = !git --no-pager diff --name-only --diff-filter='ACMRTUXB' origin/develop...
 	chspecs = !git fch | grep "_spec.rb" | xargs bin/rspec
+	ci = commit
+	cm = commit -m
+	co = checkout
+	fch = !git --no-pager diff --name-only --diff-filter='ACMRTUXB' origin/develop...
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	p = !git push --set-upstream origin `git rev-parse --abbrev-ref HEAD`
+	pf = push --force-with-lease
+	qci = commit --no-verify
+    qcm = commit --no-verify -m
+	rbc = !EDITOR=cat git rebase --continue
+	rbi = "!f() { git rebase -i $1~1; }; f"
+	rbonto = "!f() { git rebase --onto $1 $2~1; }; f"
+	uncommit = reset HEAD^1
+    
 [push]
 	default = simple
