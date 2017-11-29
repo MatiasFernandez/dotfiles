@@ -13,6 +13,11 @@ function hp() {
 }
 add_function_help "hp" "Push to Heroku Remote{1}. Use -f at the end to force push" 
 
+function ha() {
+  heroku addons:open $1 -a $2
+}
+add_function_help "ha" "Open Heroku Addon{1} on application{2}"
+
 function webserver() {
   ruby -run -e httpd ${1-.} -p ${2-9090}
 }
