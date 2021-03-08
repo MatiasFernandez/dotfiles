@@ -1,0 +1,1 @@
+alias latmon='gping 10.1.1.1 1.1.1.1 lens.l.google.com'
