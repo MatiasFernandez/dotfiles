@@ -16,3 +16,11 @@ repeat () {
   done
 }
 add_function_help "repeat" "Repeat a command {1} n times {2} with m seconds of delay between each time {3}"
+
+timestamped () {
+  while read command
+  do 
+    echo "$(date +"%Y-%m-%dT%H:%M:%S%z") $command"
+  done
+}
+add_function_help "timestamped" "Prepend an ISO8601 timestamp at the beginning of each line of the piped input"
