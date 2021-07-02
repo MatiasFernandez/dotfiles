@@ -137,11 +137,13 @@ brew 'libyaml'
 brew 'little-cms'
 brew 'little-cms2'
 brew 'lua'
+brew 'lz4'
 brew 'lzo'
 brew 'm4'
 brew 'mas'
 brew 'mosquitto'
 brew 'mpdecimal'
+brew 'mysql'
 brew 'mysql@5.6'
 brew 'ncurses'
 brew 'netpbm'
@@ -152,7 +154,6 @@ brew 'node'
 brew 'npth'
 brew 'nspr'
 brew 'nss'
-brew 'ntfs-3g'
 brew 'oniguruma'
 brew 'opencore-amr'
 brew 'openexr'
@@ -225,23 +226,37 @@ tap 'homebrew/cask-drivers'
 tap 'homebrew/services'
 
 tap 'homebrew/cask'
+cask 'appcleaner'
+cask 'authy'
 cask 'cinebench'
 cask 'copyq'
 cask 'dbeaver-community'
 cask 'disk-inventory-x'
+cask 'dropbox'
+cask 'google-chrome'
+cask 'iterm2'
+cask 'jetbrains-toolbox'
+cask 'macfuse'
 cask 'meld'
 cask 'mockoon'
 cask 'mounty'
 cask 'packetsender'
 cask 'phantomjs'
+cask 'slack'
 cask 'soundflower'
+cask 'soundflowerbed'
+cask 'spectacle'
 cask 'vagrant'
+cask 'whatsapp'
 cask 'wireshark'
 cask 'xquartz'
 
 tap 'boltopslabs/software'
 
 tap 'buo/cask-upgrade'
+
+tap 'gromgit/fuse'
+brew 'ntfs-3g-mac'
 
 tap 'heroku/brew'
 brew 'heroku'
@@ -257,18 +272,18 @@ tap 'shopify/shopify'
 tap 'teamookla/speedtest'
 brew 'speedtest'
 
-# Other Homebrew packages
-brew 'python@2'
-brew 'unrar'
-brew 'wine'
-
 # App Store applications
 mas 'Clocker (21.03.01)', id: 1056643111
 mas 'Discovery (2.0.3)', id: 1381004916
-mas 'Microsoft Remote Desktop (10.6.6)', id: 1295203466
-mas 'Monosnap (4.11.2)', id: 540348655
+mas 'GarageBand (10.4.3)', id: 682658836
+mas 'iMovie (10.2.4)', id: 408981434
+mas 'Keynote (11.1)', id: 409183694
+mas 'Microsoft Remote Desktop (10.6.7)', id: 1295203466
+mas 'Monosnap (4.12.0)', id: 540348655
 mas 'MQTT Explorer (0.3.5)', id: 1455214828
+mas 'Numbers (11.1)', id: 409203825
+mas 'Pages (11.1)', id: 409201541
 mas 'Smart JSON Editor (1.4.5)', id: 1268962404
 mas 'The Unarchiver (4.3.3)', id: 425424353
-mas 'Todoist (7.6)', id: 585829637
-mas 'Xcode (12.3)', id: 497799835
+mas 'Todoist (7.7)', id: 585829637
+mas 'Xcode (12.5.1)', id: 497799835
