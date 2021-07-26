@@ -251,6 +251,7 @@ cask 'slack'
 cask 'soundflower'
 cask 'soundflowerbed'
 cask 'spectacle'
+cask 'spotify'
 cask 'unified-remote'
 cask 'vagrant'
 cask 'whatsapp'
@@ -279,6 +280,7 @@ tap 'teamookla/speedtest'
 brew 'speedtest'
 
 # App Store applications
+mas 'Bitwarden (1.27.1)', id: 1352778147
 mas 'Clocker (21.03.01)', id: 1056643111
 mas 'Discovery (2.0.3)', id: 1381004916
 mas 'GarageBand (10.4.3)', id: 682658836
