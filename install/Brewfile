@@ -67,6 +67,7 @@ brew 'haproxy'
 brew 'harfbuzz'
 brew 'hicolor-icon-theme'
 brew 'htop'
+brew 'hunspell'
 brew 'i2util'
 brew 'icu4c'
 brew 'ilmbase'
@@ -134,6 +135,7 @@ brew 'libxdmcp'
 brew 'libxext'
 brew 'libxrender'
 brew 'libyaml'
+brew 'libzip'
 brew 'little-cms'
 brew 'little-cms2'
 brew 'lua'
@@ -145,6 +147,7 @@ brew 'mosquitto'
 brew 'mpdecimal'
 brew 'mysql'
 brew 'mysql@5.6'
+brew 'namebench'
 brew 'ncurses'
 brew 'netpbm'
 brew 'nettle'
@@ -195,10 +198,12 @@ brew 'snappy'
 brew 'speex'
 brew 'sqlite'
 brew 'srt'
+brew 'switchaudio-osx'
 brew 'tcl-tk'
 brew 'telnet'
 brew 'tesseract'
 brew 'theora'
+brew 'tldr'
 brew 'unbound'
 brew 'unzip'
 brew 'vala'
@@ -227,13 +232,16 @@ tap 'homebrew/services'
 
 tap 'homebrew/cask'
 cask 'adobe-creative-cloud'
+cask 'alfred'
 cask 'android-file-transfer'
 cask 'angry-ip-scanner'
 cask 'appcleaner'
 cask 'audacity'
 cask 'authy'
+cask 'ccmenu'
 cask 'cinebench'
 cask 'copyq'
+cask 'dash'
 cask 'dbeaver-community'
 cask 'discord'
 cask 'disk-inventory-x'
@@ -244,6 +252,7 @@ cask 'google-chrome'
 cask 'grammarly'
 cask 'handbrake'
 cask 'intel-power-gadget'
+cask 'istat-menus'
 cask 'iterm2'
 cask 'jetbrains-toolbox'
 cask 'lepton'
@@ -254,6 +263,7 @@ cask 'meld'
 cask 'mockoon'
 cask 'mounty'
 cask 'netspot'
+cask 'ngrok'
 cask 'obs'
 cask 'openvpn-connect'
 cask 'packetsender'
@@ -261,6 +271,8 @@ cask 'phantomjs'
 cask 'pingplotter'
 cask 'pop'
 cask 'postman'
+cask 'rocket'
+cask 'shotcut'
 cask 'skype'
 cask 'slack'
 cask 'soundflower'
@@ -303,17 +315,18 @@ brew 'speedtest'
 
 # App Store applications
 mas 'Bitwarden (1.27.1)', id: 1352778147
-mas 'Clocker (21.03.01)', id: 1056643111
+mas 'Clocker (21.08.01)', id: 1056643111
 mas 'Discovery (2.0.3)', id: 1381004916
 mas 'GarageBand (10.4.3)', id: 682658836
-mas 'iMovie (10.2.4)', id: 408981434
+mas 'iMovie (10.2.5)', id: 408981434
 mas 'Keynote (11.1)', id: 409183694
-mas 'Microsoft Remote Desktop (10.6.7)', id: 1295203466
-mas 'Monosnap (4.12.0)', id: 540348655
+mas 'Microsoft Remote Desktop (10.6.8)', id: 1295203466
+mas 'Monosnap (4.16.0)', id: 540348655
 mas 'MQTT Explorer (0.3.5)', id: 1455214828
 mas 'Numbers (11.1)', id: 409203825
 mas 'Pages (11.1)', id: 409201541
 mas 'Smart JSON Editor (1.4.5)', id: 1268962404
+mas 'stts (2.1)', id: 1187772509
 mas 'The Unarchiver (4.3.3)', id: 425424353
 mas 'Todoist (7.7)', id: 585829637
 mas 'Xcode (12.5.1)', id: 497799835
