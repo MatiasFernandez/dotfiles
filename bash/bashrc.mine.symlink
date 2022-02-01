@@ -25,3 +25,5 @@ then
 
   pathappend $PRIVATE_DOTFILES_ROOT/bin
 fi
+
+export PATH=/Users/matyf/Library/Python/3.9/bin:$PATH
