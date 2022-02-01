@@ -6,3 +6,11 @@ end
 def clipw(element)
   IO.popen('xclip -sel clip', 'w') {|io| io.print(element)}
 end
+
+# Ruby extensions
+begin
+  require "ruby_on_asteroids/core_ext/string/accessing"
+
+  String.include RubyOnAsteroids::CoreExt::String::Accessing
+rescue LoadError
+end
