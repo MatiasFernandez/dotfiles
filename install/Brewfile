@@ -86,15 +86,18 @@ brew 'jq'
 brew 'krb5'
 brew 'lame'
 brew 'leptonica'
+brew 'libarchive'
 brew 'libass'
 brew 'libassuan'
 brew 'libb2'
 brew 'libbluray'
+brew 'libcbor'
 brew 'libcerf'
 brew 'libde265'
 brew 'libev'
 brew 'libevent'
 brew 'libffi'
+brew 'libfido2'
 brew 'libgcrypt'
 brew 'libgpg-error'
 brew 'libheif'
@@ -103,6 +106,7 @@ brew 'libidn2'
 brew 'libksba'
 brew 'liblqr'
 brew 'libmaxminddb'
+brew 'libnet'
 brew 'libnghttp2'
 brew 'libogg'
 brew 'libomp'
@@ -209,6 +213,7 @@ brew 'sqlite'
 brew 'srt'
 brew 'switchaudio-osx'
 brew 'tcl-tk'
+brew 'tcptraceroute'
 brew 'telnet'
 brew 'tesseract'
 brew 'theora'
@@ -277,6 +282,7 @@ cask 'ngrok'
 cask 'obs'
 cask 'openvpn-connect'
 cask 'packetsender'
+cask 'parsec'
 cask 'phantomjs'
 cask 'pingplotter'
 cask 'pop'
@@ -333,19 +339,19 @@ tap 'teamookla/speedtest'
 brew 'speedtest'
 
 # App Store applications
-mas 'Bitwarden (1.28.3)', id: 1352778147
+mas 'Bitwarden (1.30.0)', id: 1352778147
 mas 'Clocker (21.08.01)', id: 1056643111
-mas 'Discovery (2.0.3)', id: 1381004916
-mas 'GarageBand (10.4.3)', id: 682658836
-mas 'iMovie (10.2.5)', id: 408981434
+mas 'Discovery (2.1.0)', id: 1381004916
+mas 'GarageBand (10.4.5)', id: 682658836
+mas 'iMovie (10.3.1)', id: 408981434
 mas 'Keynote (11.2)', id: 409183694
-mas 'Microsoft Remote Desktop (10.6.8)', id: 1295203466
+mas 'Microsoft Remote Desktop (10.7.5)', id: 1295203466
 mas 'Monosnap (4.18.0)', id: 540348655
 mas 'MQTT Explorer (0.3.5)', id: 1455214828
 mas 'Numbers (11.2)', id: 409203825
 mas 'Pages (11.2)', id: 409201541
 mas 'Smart JSON Editor (1.4.5)', id: 1268962404
-mas 'stts (2.1)', id: 1187772509
+mas 'stts (2.4)', id: 1187772509
 mas 'The Unarchiver (4.3.3)', id: 425424353
-mas 'Todoist (8.0.1)', id: 585829637
-mas 'Xcode (13.0)', id: 497799835
+mas 'Todoist (8.0.5)', id: 585829637
+mas 'Xcode (13.2.1)', id: 497799835
