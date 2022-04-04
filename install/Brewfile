@@ -89,6 +89,7 @@ brew 'leptonica'
 brew 'libarchive'
 brew 'libass'
 brew 'libassuan'
+brew 'libavif'
 brew 'libb2'
 brew 'libbluray'
 brew 'libcbor'
@@ -263,6 +264,7 @@ cask 'disk-inventory-x'
 cask 'dropbox'
 cask 'evernote'
 cask 'firefox'
+cask 'freecad'
 cask 'google-chrome'
 cask 'grammarly'
 cask 'handbrake'
@@ -344,6 +346,7 @@ mas 'Clocker (21.08.01)', id: 1056643111
 mas 'Discovery (2.1.0)', id: 1381004916
 mas 'GarageBand (10.4.5)', id: 682658836
 mas 'iMovie (10.3.1)', id: 408981434
+mas 'JoystickMonitor (1.3)', id: 1361339902
 mas 'Keynote (11.2)', id: 409183694
 mas 'Microsoft Remote Desktop (10.7.5)', id: 1295203466
 mas 'Monosnap (4.18.0)', id: 540348655
