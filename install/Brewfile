@@ -7,6 +7,7 @@ brew 'aom'
 brew 'apr'
 brew 'apr-util'
 brew 'argon2'
+brew 'aribb24'
 brew 'aspell'
 brew 'assimp'
 brew 'atk'
@@ -64,6 +65,7 @@ brew 'gradle'
 brew 'graphicsmagick'
 brew 'graphite2'
 brew 'graphviz'
+brew 'grep'
 brew 'gsettings-desktop-schemas'
 brew 'gsl'
 brew 'gtk+'
@@ -73,6 +75,7 @@ brew 'guile'
 brew 'haproxy'
 brew 'harfbuzz'
 brew 'hicolor-icon-theme'
+brew 'highway'
 brew 'htop'
 brew 'hunspell'
 brew 'i2util'
@@ -141,6 +144,7 @@ brew 'libssh2'
 brew 'libtasn1'
 brew 'libtiff'
 brew 'libtool'
+brew 'libunibreak'
 brew 'libunistring'
 brew 'libusb'
 brew 'libuv'
@@ -168,6 +172,7 @@ brew 'mbedtls'
 brew 'md4c'
 brew 'mosquitto'
 brew 'mpdecimal'
+brew 'mpg123'
 brew 'mysql'
 brew 'mysql@5.6'
 brew 'namebench'
@@ -187,6 +192,7 @@ brew 'openjdk'
 brew 'openjpeg'
 brew 'openldap'
 brew 'openssl@1.1'
+brew 'openssl@3'
 brew 'opus'
 brew 'p11-kit'
 brew 'p7zip'
@@ -202,12 +208,13 @@ brew 'pkg-config'
 brew 'plotutils'
 brew 'poppler'
 brew 'popt'
-brew 'postgresql'
+brew 'postgresql@14'
 brew 'potrace'
 brew 'protobuf'
 brew 'pstoedit'
 brew 'pyenv'
 brew 'python@3.10'
+brew 'python@3.11'
 brew 'python@3.8'
 brew 'python@3.9'
 brew 'qt'
@@ -217,6 +224,7 @@ brew 'readline'
 brew 'redis'
 brew 'rtmpdump'
 brew 'rubberband'
+brew 'rust'
 brew 'sdl2'
 brew 'shared-mime-info'
 brew 'siege'
@@ -225,6 +233,7 @@ brew 'snappy'
 brew 'speex'
 brew 'sqlite'
 brew 'srt'
+brew 'svt-av1'
 brew 'switchaudio-osx'
 brew 'tcl-tk'
 brew 'tcptraceroute'
@@ -249,6 +258,7 @@ brew 'xvid'
 brew 'xz'
 brew 'yarn'
 brew 'youtube-dl'
+brew 'yt-dlp'
 brew 'zeromq'
 brew 'zimg'
 brew 'zlib'
@@ -257,6 +267,7 @@ brew 'zstd'
 tap 'homebrew/bundle'
 
 tap 'homebrew/cask-drivers'
+cask 'garmin-express'
 
 tap 'homebrew/services'
 
@@ -315,6 +326,7 @@ cask 'soundflower'
 cask 'soundflowerbed'
 cask 'spectacle'
 cask 'spotify'
+cask 'sqlitestudio'
 cask 'steam'
 cask 'stoplight-studio'
 cask 'stremio'
@@ -326,6 +338,7 @@ cask 'vagrant'
 cask 'visual-studio-code'
 cask 'vlc'
 cask 'whatsapp'
+cask 'wine-stable'
 cask 'wireshark'
 cask 'xquartz'
 cask 'zoom'
@@ -357,19 +370,26 @@ tap 'shopify/shopify'
 tap 'teamookla/speedtest'
 brew 'speedtest'
 
+tap 'unused-code/formulae'
+brew 'unused'
+
 # App Store applications
 mas 'Bitwarden (1.32.1)', id: 1352778147
-mas 'Clocker (22.02.02)', id: 1056643111
+mas 'Boop (1.4.0)', id: 1518425043
+mas 'Clocker (22.07)', id: 1056643111
+mas 'DaVinci Resolve (17.4.6)', id: 571213070
 mas 'Discovery (2.1.0)', id: 1381004916
-mas 'GarageBand (10.4.6)', id: 682658836
+mas 'Home Assistant (2022.3)', id: 1099568401
 mas 'iMovie (10.3.2)', id: 408981434
 mas 'JoystickMonitor (1.3)', id: 1361339902
 mas 'Keynote (12.0)', id: 409183694
 mas 'Microsoft Remote Desktop (10.7.6)', id: 1295203466
-mas 'Monosnap (5.1.6)', id: 540348655
+mas 'Monosnap (5.1.7)', id: 540348655
 mas 'MQTT Explorer (0.3.5)', id: 1455214828
 mas 'Numbers (12.0)', id: 409203825
 mas 'Pages (12.0)', id: 409201541
+mas 'Quick Camera (1.4.3)', id: 598853070
+mas 'ScreenBrush (1.7.8)', id: 1233965871
 mas 'Smart JSON Editor (1.4.5)', id: 1268962404
 mas 'stts (2.6)', id: 1187772509
 mas 'The Unarchiver (4.3.4)', id: 425424353
