@@ -2,6 +2,50 @@
 # tap repositories and their packages
 
 tap 'homebrew/core'
+
+tap 'homebrew/bundle'
+
+tap 'homebrew/cask-drivers'
+
+tap 'homebrew/services'
+
+tap 'homebrew/cask'
+
+tap 'boltopslabs/software'
+
+tap 'buo/cask-upgrade'
+
+tap 'gromgit/fuse'
+brew 'ntfs-3g-mac'
+cask 'mounty'
+
+tap 'heroku/brew'
+brew 'heroku'
+brew 'heroku-node'
+
+tap 'kris-anderson/netperf'
+brew 'netperf-enable-demo'
+
+tap 'martido/graph'
+
+tap 'matiasfernandez/fping'
+brew 'fping@4.4'
+
+tap 'rcmdnk/file'
+brew 'brew-file'
+
+tap 'shopify/shopify'
+brew 'yarn'
+cask 'phantomjs'
+
+tap 'teamookla/speedtest'
+brew 'speedtest'
+
+tap 'unused-code/formulae'
+brew 'unused'
+
+# Other Homebrew packages
+brew 'abseil'
 brew 'adns'
 brew 'aom'
 brew 'apr'
@@ -19,6 +63,7 @@ brew 'bdw-gc'
 brew 'boost'
 brew 'boost-build'
 brew 'brotli'
+brew 'buf'
 brew 'c-ares'
 brew 'ca-certificates'
 brew 'cabextract'
@@ -35,6 +80,7 @@ brew 'dbus'
 brew 'docbook'
 brew 'docbook-xsl'
 brew 'double-conversion'
+brew 'duktape'
 brew 'ffmpeg'
 brew 'flac'
 brew 'fontconfig'
@@ -66,6 +112,7 @@ brew 'graphicsmagick'
 brew 'graphite2'
 brew 'graphviz'
 brew 'grep'
+brew 'grpcurl'
 brew 'gsettings-desktop-schemas'
 brew 'gsl'
 brew 'gtk+'
@@ -93,6 +140,7 @@ brew 'jpeg'
 brew 'jpeg-turbo'
 brew 'jpeg-xl'
 brew 'jq'
+brew 'jsoncpp'
 brew 'krb5'
 brew 'lame'
 brew 'leptonica'
@@ -110,11 +158,14 @@ brew 'libevent'
 brew 'libffi'
 brew 'libfido2'
 brew 'libgcrypt'
+brew 'libgit2'
+brew 'libgit2@1.6'
 brew 'libgpg-error'
 brew 'libheif'
 brew 'libidn'
 brew 'libidn2'
 brew 'libksba'
+brew 'liblinear'
 brew 'liblqr'
 brew 'libmaxminddb'
 brew 'libmng'
@@ -163,7 +214,10 @@ brew 'libyaml'
 brew 'libzip'
 brew 'little-cms'
 brew 'little-cms2'
+brew 'llvm'
+brew 'llvm@16'
 brew 'lua'
+brew 'lua@5.3'
 brew 'lz4'
 brew 'lzo'
 brew 'm4'
@@ -189,6 +243,7 @@ brew 'oniguruma'
 brew 'opencore-amr'
 brew 'openexr'
 brew 'openjdk'
+brew 'openjdk@17'
 brew 'openjpeg'
 brew 'openldap'
 brew 'openssl@1.1'
@@ -203,6 +258,7 @@ brew 'pcre'
 brew 'pcre2'
 brew 'php'
 brew 'pinentry'
+brew 'pipx'
 brew 'pixman'
 brew 'pkg-config'
 brew 'plotutils'
@@ -211,8 +267,11 @@ brew 'popt'
 brew 'postgresql@14'
 brew 'potrace'
 brew 'protobuf'
+brew 'protobuf@21'
 brew 'pstoedit'
 brew 'pyenv'
+brew 'python-certifi'
+brew 'python-mutagen'
 brew 'python@3.10'
 brew 'python@3.11'
 brew 'python@3.8'
@@ -256,22 +315,15 @@ brew 'xmlto'
 brew 'xorgproto'
 brew 'xvid'
 brew 'xz'
-brew 'yarn'
 brew 'youtube-dl'
 brew 'yt-dlp'
+brew 'z3'
 brew 'zeromq'
 brew 'zimg'
 brew 'zlib'
 brew 'zstd'
 
-tap 'homebrew/bundle'
-
-tap 'homebrew/cask-drivers'
-cask 'garmin-express'
-
-tap 'homebrew/services'
-
-tap 'homebrew/cask'
+# Other Cask applications
 cask 'adobe-creative-cloud'
 cask 'alfred'
 cask 'android-file-transfer'
@@ -281,8 +333,7 @@ cask 'arduino'
 cask 'audacity'
 cask 'authy'
 cask 'caffeine'
-cask 'ccmenu'
-cask 'cinebench'
+cask 'chirp'
 cask 'copyq'
 cask 'dash'
 cask 'dbeaver-community'
@@ -292,7 +343,10 @@ cask 'dropbox'
 cask 'evernote'
 cask 'firefox'
 cask 'freecad'
+cask 'garmin-express'
+cask 'gimp'
 cask 'google-chrome'
+cask 'google-earth-pro'
 cask 'grammarly'
 cask 'handbrake'
 cask 'inkscape'
@@ -306,14 +360,14 @@ cask 'maccpuid'
 cask 'macfuse'
 cask 'meld'
 cask 'mockoon'
-cask 'mounty'
 cask 'netspot'
 cask 'ngrok'
 cask 'obs'
+cask 'obsidian'
 cask 'openvpn-connect'
 cask 'packetsender'
 cask 'parsec'
-cask 'phantomjs'
+cask 'permute'
 cask 'pingplotter'
 cask 'pop'
 cask 'postman'
@@ -343,55 +397,25 @@ cask 'wireshark'
 cask 'xquartz'
 cask 'zoom'
 
-tap 'boltopslabs/software'
-
-tap 'buo/cask-upgrade'
-
-tap 'gromgit/fuse'
-brew 'ntfs-3g-mac'
-
-tap 'heroku/brew'
-brew 'heroku'
-brew 'heroku-node'
-
-tap 'kris-anderson/netperf'
-brew 'netperf-enable-demo'
-
-tap 'martido/graph'
-
-tap 'matiasfernandez/fping'
-brew 'fping@4.4'
-
-tap 'rcmdnk/file'
-brew 'brew-file'
-
-tap 'shopify/shopify'
-
-tap 'teamookla/speedtest'
-brew 'speedtest'
-
-tap 'unused-code/formulae'
-brew 'unused'
-
 # App Store applications
-mas 'Bitwarden (1.32.1)', id: 1352778147
+mas 'Bitwarden (2023.8.3)', id: 1352778147
 mas 'Boop (1.4.0)', id: 1518425043
-mas 'Clocker (22.07)', id: 1056643111
-mas 'DaVinci Resolve (17.4.6)', id: 571213070
+mas 'Clocker (23.01)', id: 1056643111
 mas 'Discovery (2.1.0)', id: 1381004916
-mas 'Home Assistant (2022.3)', id: 1099568401
-mas 'iMovie (10.3.2)', id: 408981434
+mas 'Disk Space Analyzer (4.1.5)', id: 446243721
+mas 'Home Assistant (2023.4)', id: 1099568401
+mas 'iMovie (10.3.8)', id: 408981434
 mas 'JoystickMonitor (1.3)', id: 1361339902
-mas 'Keynote (12.0)', id: 409183694
-mas 'Microsoft Remote Desktop (10.7.6)', id: 1295203466
-mas 'Monosnap (5.1.7)', id: 540348655
+mas 'Keynote (13.1)', id: 409183694
+mas 'Microsoft Remote Desktop (10.9.1)', id: 1295203466
+mas 'Monosnap (6.1.0)', id: 540348655
 mas 'MQTT Explorer (0.3.5)', id: 1455214828
-mas 'Numbers (12.0)', id: 409203825
-mas 'Pages (12.0)', id: 409201541
+mas 'Numbers (13.1)', id: 409203825
+mas 'Pages (13.1)', id: 409201541
 mas 'Quick Camera (1.4.3)', id: 598853070
-mas 'ScreenBrush (1.7.8)', id: 1233965871
+mas 'ScreenBrush (1.8.7)', id: 1233965871
 mas 'Smart JSON Editor (1.4.5)', id: 1268962404
-mas 'stts (2.6)', id: 1187772509
-mas 'The Unarchiver (4.3.4)', id: 425424353
-mas 'Todoist (8.0.6)', id: 585829637
-mas 'Xcode (13.3.1)', id: 497799835
+mas 'stts (2.20)', id: 1187772509
+mas 'The Unarchiver (4.3.5)', id: 425424353
+mas 'Todoist (8.4.3)', id: 585829637
+mas 'Xcode (14.3.1)', id: 497799835
