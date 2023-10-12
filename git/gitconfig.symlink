@@ -8,7 +8,9 @@
 	cm = commit -m
 	co = checkout
 	fch = !git --no-pager diff --name-only --diff-filter='ACMRTUXB' origin/develop...
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	g = "!f() { git log --oneline --name-status -S \"$1\"; }; f"
+	gi = "!f() { git log --oneline --name-status -i -S \"$1\"; }; f"
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	p = !git push --set-upstream origin `git rev-parse --abbrev-ref HEAD`
 	pf = push --force-with-lease
 	qci = commit --no-verify
