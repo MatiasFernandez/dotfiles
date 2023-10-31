@@ -224,6 +224,7 @@ brew 'm4'
 brew 'mas'
 brew 'mbedtls'
 brew 'md4c'
+brew 'miniupnpc'
 brew 'mosquitto'
 brew 'mpdecimal'
 brew 'mpg123'
@@ -350,6 +351,7 @@ cask 'google-earth-pro'
 cask 'grammarly'
 cask 'handbrake'
 cask 'inkscape'
+cask 'insomnia'
 cask 'intel-power-gadget'
 cask 'istat-menus'
 cask 'iterm2'
@@ -386,6 +388,7 @@ cask 'stoplight-studio'
 cask 'stremio'
 cask 'sublime-text'
 cask 'teamviewer'
+cask 'todoist'
 cask 'transmission'
 cask 'unified-remote'
 cask 'vagrant'
@@ -417,5 +420,4 @@ mas 'ScreenBrush (1.8.7)', id: 1233965871
 mas 'Smart JSON Editor (1.4.5)', id: 1268962404
 mas 'stts (2.20)', id: 1187772509
 mas 'The Unarchiver (4.3.5)', id: 425424353
-mas 'Todoist (8.4.3)', id: 585829637
 mas 'Xcode (14.3.1)', id: 497799835
