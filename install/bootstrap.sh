@@ -136,6 +136,8 @@ install_dotfiles () {
     link_file "$src" "$dst"
   done
 
+  link_file "Brewfile" "$HOME/.config/brewfile/Brewfile"
+
   if [ `fgrep -c "bashrc.mine" ~/.bashrc` -eq 0 ]; then
     echo "source ~/.bashrc.mine" >> ~/.bashrc
     success "Added sourcing of .bashrc.mine to .bashrc"
@@ -144,15 +146,9 @@ install_dotfiles () {
   fi
 }
 
-install_packages () {
-  info 'installing linux packages'
-  
-  $DOTFILES_ROOT/install/install-packages.sh
-}
 
 setup_gitconfig
 install_dotfiles
-install_packages
 
 echo ''
 echo '  All installed!'
