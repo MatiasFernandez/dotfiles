@@ -5,8 +5,6 @@ tap 'homebrew/core'
 
 tap 'homebrew/bundle'
 
-tap 'homebrew/cask-drivers'
-
 tap 'homebrew/services'
 
 tap 'homebrew/cask'
@@ -27,9 +25,6 @@ tap 'kris-anderson/netperf'
 brew 'netperf-enable-demo'
 
 tap 'martido/graph'
-
-tap 'matiasfernandez/fping'
-brew 'fping@4.4'
 
 tap 'rcmdnk/file'
 brew 'brew-file'
@@ -357,7 +352,6 @@ cask 'grammarly'
 cask 'handbrake'
 cask 'inkscape'
 cask 'insomnia'
-cask 'intel-power-gadget'
 cask 'istat-menus'
 cask 'iterm2'
 cask 'jetbrains-toolbox'
