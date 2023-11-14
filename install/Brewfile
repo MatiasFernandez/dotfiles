@@ -309,6 +309,7 @@ cask 'gimp'
 cask 'google-chrome'
 cask 'google-earth-pro'
 cask 'grammarly'
+cask 'graphiql'
 cask 'handbrake'
 cask 'inkscape'
 cask 'insomnia'
@@ -333,6 +334,7 @@ cask 'permute'
 cask 'phantomjs'
 cask 'pingplotter'
 cask 'pop'
+cask 'postico'
 cask 'postman'
 cask 'qbittorrent'
 cask 'shotcut'
@@ -389,3 +391,15 @@ brew 'speedtest'
 
 tap 'unused-code/formulae'
 brew 'unused'
+
+# App Store applications
+mas 'Bitwarden (2023.10.1)', id: 1352778147
+mas 'Boop (1.4.0)', id: 1518425043
+mas 'Clocker (23.01)', id: 1056643111
+mas 'Discovery (2.1.0)', id: 1381004916
+mas 'Home Assistant (2023.7)', id: 1099568401
+mas 'Monosnap (6.1.0)', id: 540348655
+mas 'Smart JSON Editor (1.4.5)', id: 1268962404
+mas 'stts (2.20)', id: 1187772509
+mas 'The Unarchiver (4.3.6)', id: 425424353
+mas 'Xcode (15.0.1)', id: 497799835
