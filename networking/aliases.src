@@ -1,1 +1,2 @@
 alias latmon='gping 10.1.1.1 8.8.8.8 lens.l.google.com'
+alias latofi='gping 192.168.1.4 8.8.8.8 lens.l.google.com'
