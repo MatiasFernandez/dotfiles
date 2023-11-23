@@ -1,2 +1,2 @@
 alias gs="git status"
-
+alias g="git"

@@ -14,3 +14,9 @@ alias hrc="heroku run rails c -a"
 
 # Docker
 alias dc="docker-compose"
+
+#Sqitch
+alias sq="sqitch"
+
+#pnpm
+alias p="pnpm"
