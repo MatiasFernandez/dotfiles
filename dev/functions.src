@@ -21,5 +21,15 @@ add_function_help "ha" "Open Heroku Addon{1} on application{2}"
 function webserver() {
   ruby -run -e httpd ${1-.} -p ${2-9090}
 }
-add_function_help "webserver" "Expose directory{1} with a web server at port 9090{2}" 
+add_function_help "webserver" "Expose directory{1} with a web server at port 9090{2}"
 
+# PNPM
+function pb() {
+  pnpm --filter "$1" build
+}
+add_function_help "pb" "Build pnpm package{1}"
+
+function pbchan() {
+  pnpm --filter "[main]" build
+}
+add_function_help "pbchan" "Build pnpm packages that changed since main@HEAD"
