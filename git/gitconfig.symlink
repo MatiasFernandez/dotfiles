@@ -2,6 +2,7 @@
 	path = ~/.gitconfig.local
 [alias]
 	alias = "!f() { git config --get-regexp "^alias." ; }; f"
+	bm = !git fetch && echo Commits behind origin/main:  $(git rev-list --count $(git rev-parse --abbrev-ref HEAD)..origin/main)
 	br = branch
 	chspecs = !git fch | grep "_spec.rb" | xargs bin/rspec
 	ci = commit
