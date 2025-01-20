@@ -19,7 +19,13 @@
 	rbc = !EDITOR=cat git rebase --continue
 	rbi = "!f() { git rebase -i $1~1; }; f"
 	rbonto = "!f() { git rebase --onto $1 $2~1; }; f"
-	rbm = rebase origin/main
+	rbm = !git fetch && git rebase origin/main
+        s = "!f() { git stash push -m \"$*\"; }; f"
+    	sa = "!f() { git stash apply $(git sgrep "$1"); }; f"
+    	sd = "!f() { git stash drop $(git sgrep "$1"); }; f"
+    	sgrep = "!f() { ref=$(git --no-pager stash list | grep "$1" | cut -d: -f1 | head -n1); echo ${ref:-<no_match>}; }; f"
+        sl = stash list
+    	ss = "!f() { git stash show $(git sgrep "$1") -p; }; f"
         uncommit = reset HEAD^1
     
 [push]
