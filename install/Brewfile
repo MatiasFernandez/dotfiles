@@ -32,6 +32,7 @@ brew 'cairo'
 brew 'cairomm'
 brew 'cffi'
 brew 'cjson'
+brew 'cloudflared'
 brew 'cmake'
 brew 'cmocka'
 brew 'colima'
@@ -103,6 +104,7 @@ brew 'gts'
 brew 'guile'
 brew 'haproxy'
 brew 'harfbuzz'
+brew 'helm'
 brew 'heroku'
 brew 'highway'
 brew 'htop'
@@ -144,6 +146,7 @@ brew 'libevent'
 brew 'libffi'
 brew 'libgcrypt'
 brew 'libgit2'
+brew 'libgit2@1.8'
 brew 'libgpg-error'
 brew 'libheif'
 brew 'libidn'
@@ -178,6 +181,7 @@ brew 'libssh'
 brew 'libssh2'
 brew 'libtasn1'
 brew 'libtiff'
+brew 'libtommath'
 brew 'libtool'
 brew 'libunibreak'
 brew 'libunistring'
@@ -272,13 +276,13 @@ brew 'rav1e'
 brew 'readline'
 brew 'redis'
 brew 'ripgrep'
-brew 'rover'
 brew 'rtmpdump'
 brew 'rubberband'
 brew 'rust'
 brew 'saml2aws'
 brew 'sdl2'
 brew 'shared-mime-info'
+brew 'shellcheck'
 brew 'siege'
 brew 'six'
 brew 'snappy'
@@ -451,16 +455,3 @@ brew 'icu4c'
 brew 'pkg-config'
 brew 'python-certifi'
 brew 'python-mutagen'
-
-# App Store applications
-mas 'Bitwarden (2024.11.2)', id: 1352778147
-mas 'Boop (1.4.0)', id: 1518425043
-mas 'Clocker (24.03)', id: 1056643111
-mas 'Discovery (2.1.0)', id: 1381004916
-mas 'Home Assistant (2024.5.1)', id: 1099568401
-mas 'Monosnap (6.1.0)', id: 540348655
-mas 'Say No to Notch (1.1)', id: 1639306886
-mas 'Smart JSON Editor (1.4.5)', id: 1268962404
-mas 'stts (2.22)', id: 1187772509
-mas 'The Unarchiver (4.3.8)', id: 425424353
-mas 'Xcode (15.4)', id: 497799835
