@@ -17,6 +17,7 @@ alias dc="docker-compose"
 
 #Sqitch
 alias sq="sqitch"
+alias sqls="sq plan | tail -r | less"
 
 #pnpm
 alias p="pnpm"
