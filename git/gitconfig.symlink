@@ -9,6 +9,7 @@
 	cm = commit -m
 	co = checkout
 	fch = !git --no-pager diff --name-only --diff-filter='ACMRTUXB' origin/develop...
+        find-deleted = "!f() { git log --diff-filter=D --summary | grep -E \"delete mode.*$1|commit\" | grep -B 1 \"$1\"; }; f"
 	g = "!f() { git log --oneline --name-status -S \"$1\"; }; f"
 	gi = "!f() { git log --oneline --name-status -i -S \"$1\"; }; f"
         lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
