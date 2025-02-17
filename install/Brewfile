@@ -111,6 +111,7 @@ brew 'htop'
 brew 'hunspell'
 brew 'i2util'
 brew 'icu4c@75'
+brew 'ijq'
 brew 'ilmbase'
 brew 'imagemagick'
 brew 'imath'
@@ -287,6 +288,7 @@ brew 'siege'
 brew 'six'
 brew 'snappy'
 brew 'speex'
+brew 'sponge'
 brew 'sqlite'
 brew 'srt'
 brew 'svt-av1'
@@ -455,3 +457,21 @@ brew 'icu4c'
 brew 'pkg-config'
 brew 'python-certifi'
 brew 'python-mutagen'
+
+# App Store applications
+mas 'Bitwarden (2025.1.3)', id: 1352778147
+mas 'Boop (1.4.0)', id: 1518425043
+mas 'Clocker (24.03)', id: 1056643111
+mas 'Discovery (2.1.0)', id: 1381004916
+mas 'GarageBand (10.4.12)', id: 682658836
+mas 'Home Assistant (2025.1)', id: 1099568401
+mas 'iMovie (10.4.3)', id: 408981434
+mas 'Keynote (14.3)', id: 409183694
+mas 'Monosnap (6.1.0)', id: 540348655
+mas 'Numbers (14.3)', id: 409203825
+mas 'Pages (14.3)', id: 409201541
+mas 'Say No to Notch (1.2.1)', id: 1639306886
+mas 'Smart JSON Editor (1.4.5)', id: 1268962404
+mas 'stts (2.24)', id: 1187772509
+mas 'The Unarchiver (4.3.8)', id: 425424353
+mas 'Xcode (16.2)', id: 497799835
