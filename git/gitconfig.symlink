@@ -9,25 +9,28 @@
 	cm = commit -m
 	co = checkout
 	fch = !git --no-pager diff --name-only --diff-filter='ACMRTUXB' origin/develop...
-        find-deleted = "!f() { git log --diff-filter=D --summary | grep -E \"delete mode.*$1|commit\" | grep -B 1 \"$1\"; }; f"
+	find-added = "!f() { git log --diff-filter=A --compact-summary --pretty=format:\"%C(yellow)commit %H%nAuthor: %an <%ae>%nDate: %ad (%ar)\" -- \"*$1*\"; }; f"
+	find-added-changed = "!f() { git log --diff-filter=AM --compact-summary --pretty=format:\"%C(yellow)commit %H%nAuthor: %an <%ae>%nDate: %ad (%ar)\" -- \"*$1*\"; }; f"
+	find-changed = "!f() { git log --diff-filter=M --compact-summary --pretty=format:\"%C(yellow)commit %H%nAuthor: %an <%ae>%nDate: %ad (%ar)\" -- \"*$1*\"; }; f"
+	find-deleted = "!f() { git log --diff-filter=D --compact-summary --pretty=format:\"%C(yellow)commit %H%nAuthor: %an <%ae>%nDate: %ad (%ar)\" -- \"*$1*\"; }; f"
 	g = "!f() { git log --oneline --name-status -S \"$1\"; }; f"
 	gi = "!f() { git log --oneline --name-status -i -S \"$1\"; }; f"
-        lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	p = !git push --set-upstream origin `git rev-parse --abbrev-ref HEAD`
 	pf = push --force-with-lease
 	qci = commit --no-verify
-        qcm = commit --no-verify -m
+	qcm = commit --no-verify -m
 	rbc = !EDITOR=cat git rebase --continue
 	rbi = "!f() { git rebase -i $1~1; }; f"
 	rbonto = "!f() { git rebase --onto $1 $2~1; }; f"
 	rbm = !git fetch && git rebase origin/main
-        s = "!f() { git stash push -m \"$*\"; }; f"
-    	sa = "!f() { git stash apply $(git sgrep "$1"); }; f"
-    	sd = "!f() { git stash drop $(git sgrep "$1"); }; f"
-    	sgrep = "!f() { ref=$(git --no-pager stash list | grep "$1" | cut -d: -f1 | head -n1); echo ${ref:-<no_match>}; }; f"
-        sl = stash list
-    	ss = "!f() { git stash show $(git sgrep "$1") -p; }; f"
-        uncommit = reset HEAD^1
+	s = "!f() { git stash push -m \"$*\"; }; f"
+	sa = "!f() { git stash apply $(git sgrep "$1"); }; f"
+	sd = "!f() { git stash drop $(git sgrep "$1"); }; f"
+	sgrep = "!f() { ref=$(git --no-pager stash list | grep "$1" | cut -d: -f1 | head -n1); echo ${ref:-<no_match>}; }; f"
+	sl = stash list
+	ss = "!f() { git stash show $(git sgrep "$1") -p; }; f"
+	uncommit = reset HEAD^1
     
 [push]
 	default = simple
