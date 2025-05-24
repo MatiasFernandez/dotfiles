@@ -21,3 +21,6 @@ alias sqls="sq plan | tail -r | less"
 
 #pnpm
 alias p="pnpm"
+
+#list serial devices
+alias lss="watch -n0.5 'ls /dev/{tty,cu}.*'"
