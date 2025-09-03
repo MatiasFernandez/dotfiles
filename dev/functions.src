@@ -33,3 +33,68 @@ function pbchan() {
   pnpm --filter "[main]" build
 }
 add_function_help "pbchan" "Build pnpm packages that changed since main@HEAD"
+
+function sqs-sizes() {
+  for q in $(aws --endpoint-url=http://localhost:4566 sqs list-queues --query 'QueueUrls[]' --output text); do
+    echo "Queue: $q"
+    aws --endpoint-url=http://localhost:4566 sqs get-queue-attributes \
+      --queue-url $q \
+      --attribute-names ApproximateNumberOfMessages ApproximateNumberOfMessagesNotVisible ApproximateNumberOfMessagesDelayed
+  done
+}
+add_function_help "sqs-sizes" "List queues with their sizes"
+
+function sqs-list() {
+  aws --endpoint-url=http://localhost:4566 sqs list-queues
+}
+add_function_help "sqs-list" "List queues"
+
+function sqs-peek() {
+  local QUEUE_URL=$1
+  local ENDPOINT=${ENDPOINT:-http://localhost:4566}  # change if using real AWS
+  local VIS=${VIS:-30}                                # small non-zero to avoid repeats
+  local MAX_EMPTY=${MAX_EMPTY:-2}                     # stop after N empty polls
+  local MAX_PAGES=${MAX_PAGES:-0}                     # 0 = unlimited
+
+  if [ -z "$QUEUE_URL" ]; then
+    echo "Usage: sqs-peek <queue-url>"
+    return 1
+  fi
+  command -v aws >/dev/null || { echo "Requires aws CLI"; return 1; }
+  command -v jq  >/dev/null || { echo "Requires jq"; return 1; }
+
+  echo "Peeking from: $QUEUE_URL (visibility-timeout=${VIS}s)"
+  local empty=0 page=1 RESP COUNT
+
+  while :; do
+    RESP=$(aws --endpoint-url="$ENDPOINT" sqs receive-message \
+      --queue-url "$QUEUE_URL" \
+      --max-number-of-messages 10 \
+      --visibility-timeout "$VIS" \
+      --wait-time-seconds 0 \
+      --output json 2>/dev/null) || RESP=""
+
+    COUNT=$(jq -r '((.Messages // []) | length) // 0' 2>/dev/null <<<"$RESP")
+    COUNT=${COUNT:-0}
+
+    if [ "$COUNT" -eq 0 ] 2>/dev/null; then
+      empty=$((empty+1))
+      if [ "$empty" -ge "$MAX_EMPTY" ] 2>/dev/null; then
+        echo "Done (no more messages)."
+        break
+      fi
+      continue
+    fi
+
+    empty=0
+    echo "---- Page $page ----"
+    jq -r '.Messages[] | (.MessageId // "") + " | " + (.Body // "") + "\n"' <<<"$RESP"
+    page=$((page+1))
+
+    if [ "$MAX_PAGES" -gt 0 ] 2>/dev/null && [ "$page" -gt "$MAX_PAGES" ] 2>/dev/null; then
+      echo "Reached MAX_PAGES=$MAX_PAGES, stopping."
+      break
+    fi
+  done
+}
+add_function_help "sqs-peek" "Peek all messages from a queue"
