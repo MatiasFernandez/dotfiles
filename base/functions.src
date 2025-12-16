@@ -1,5 +1,5 @@
-GREEN="\e[32m"
-RESET="\e[0m"
+GREEN="\033[32m"
+RESET="\033[0m"
 
 export FUNCTIONS_HELP="\\n"
 
