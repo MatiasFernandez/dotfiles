@@ -98,3 +98,30 @@ function sqs-peek() {
   done
 }
 add_function_help "sqs-peek" "Peek all messages from a queue"
+
+function sqs-purge() {
+  if [ -z "$1" ]; then
+    echo "Usage: purge-local-queue <queue-name>"
+    return 1
+  fi
+  
+  local queue_name=$1
+  local queue_url=$(aws --endpoint-url=http://localhost:4566 sqs get-queue-url --queue-name "$queue_name" --query 'QueueUrl' --output text 2>/dev/null)
+  
+  if [ -z "$queue_url" ]; then
+    echo "Error: Queue '$queue_name' not found"
+    return 1
+  fi
+  
+  echo "Purging queue: $queue_name"
+  echo "Queue URL: $queue_url"
+  aws --endpoint-url=http://localhost:4566 sqs purge-queue --queue-url "$queue_url"
+  
+  if [ $? -eq 0 ]; then
+    echo "✓ Queue purged successfully"
+  else
+    echo "✗ Failed to purge queue"
+    return 1
+  fi
+}
+add_function_help "sqs-purge" "Purge all messages from a queue by name{1}"
