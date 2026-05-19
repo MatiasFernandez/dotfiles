@@ -272,6 +272,7 @@ brew 'qtwebview'
 brew 'rav1e'
 brew 'readline'
 brew 'ripgrep'
+brew 'rtk'
 brew 'rubberband'
 brew 'rust'
 brew 'sdl2'
@@ -445,16 +446,14 @@ cask 'namebench'
 # App Store applications
 mas 'Bitwarden (2026.3.1)', id: 1352778147
 mas 'Boop (1.4.0)', id: 1518425043
-mas 'Clocker (26.6)', id: 1056643111
 mas 'Discovery (2.1.0)', id: 1381004916
-mas 'Hex Fiend (2.15)', id: 1342896380
+mas 'Disk Inspector (6.0)', id: 446243721
 mas 'Home Assistant (2026.4.0)', id: 1099568401
 mas 'iMovie (10.4.4)', id: 408981434
 mas 'Keynote (14.5)', id: 409183694
 mas 'Monosnap (7.0)', id: 540348655
 mas 'Numbers (14.5)', id: 409203825
 mas 'Pages (14.5)', id: 409201541
-mas 'Pixea (8.1)', id: 1507782672
 mas 'Say No to Notch (1.2.6)', id: 1639306886
 mas 'Smart JSON Editor (1.4.5)', id: 1268962404
 mas 'stts (3.0)', id: 1187772509
