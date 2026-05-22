@@ -158,7 +158,9 @@ install_dotfiles () {
     link_file "$src" "$dst"
   done
 
-  link_file "Brewfile" "$HOME/.config/brewfile/Brewfile"
+  if [ "$(uname -s)" == "Darwin" ]; then
+    link_file "$DOTFILES_ROOT/configs/macos/Brewfile" "$HOME/.config/brewfile/Brewfile"
+  fi
 
   if [ "$SETUP_BASH" == "true" ]; then
     if [ `fgrep -c "bashrc.mine" ~/.bashrc 2>/dev/null` -eq 0 ]; then
