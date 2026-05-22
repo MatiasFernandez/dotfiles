@@ -13,6 +13,7 @@ brew 'aspell'
 brew 'assimp'
 brew 'autoconf'
 brew 'automake'
+brew 'bash'
 brew 'bdw-gc'
 brew 'boost'
 brew 'boost-build'
@@ -332,6 +333,7 @@ cask 'blackhole-2ch'
 cask 'caffeine'
 cask 'chatgpt'
 cask 'chirp'
+cask 'codexbar'
 cask 'conductor'
 cask 'cursor'
 cask 'dash'
@@ -394,6 +396,7 @@ cask 'typeface'
 cask 'unified-remote'
 cask 'visual-studio-code'
 cask 'vlc'
+cask 'warp'
 cask 'whatsapp'
 cask 'wireshark'
 cask 'xquartz'
@@ -430,6 +433,8 @@ cask 'phantomjs'
 
 tap 'sqitchers/sqitch'
 
+tap 'steipete/tap'
+
 tap 'teamookla/speedtest'
 
 tap 'unused-code/formulae'
@@ -448,7 +453,7 @@ mas 'Bitwarden (2026.3.1)', id: 1352778147
 mas 'Boop (1.4.0)', id: 1518425043
 mas 'Discovery (2.1.0)', id: 1381004916
 mas 'Disk Inspector (6.0)', id: 446243721
-mas 'Home Assistant (2026.4.0)', id: 1099568401
+mas 'Home Assistant (2026.4.1)', id: 1099568401
 mas 'iMovie (10.4.4)', id: 408981434
 mas 'Keynote (14.5)', id: 409183694
 mas 'Monosnap (7.0)', id: 540348655
@@ -458,4 +463,4 @@ mas 'Say No to Notch (1.2.6)', id: 1639306886
 mas 'Smart JSON Editor (1.4.5)', id: 1268962404
 mas 'stts (3.0)', id: 1187772509
 mas 'The Unarchiver (4.3.9)', id: 425424353
-mas 'Xcode (26.4)', id: 497799835
+mas 'Xcode (26.5)', id: 497799835
