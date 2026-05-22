@@ -1,9 +1,11 @@
+if [[ "$(uname -s)" == "Linux" ]]; then
 # Grep over apt packages
 showpkg () {
   apt-cache pkgnames | grep -i "$1" | sort
   return;
 }
 add_function_help "showpkg" "Grep over apt packages"
+fi
 
 # function Extract for common file formats
 function extract {
@@ -85,13 +87,3 @@ nonascii() {
   LANG=C grep --color=always -n '[^ -~]\+' $1
 }
 add_function_help "nonascii" "Print nonascii characters of a file"
-
-# Open a new tab in the active Gnome console window and execute a command in it.
-run_in_tab () {
-  WID=$(xprop -root | grep "_NET_ACTIVE_WINDOW(WINDOW)"| awk '{print $5}')
-  xdotool windowfocus $WID
-  xdotool key ctrl+shift+t
-  xdotool type "$*"
-  xdotool key Return
-}
-add_function_help "run_in_tab" "Open a new tab in Active Gnome console and run specified command."
