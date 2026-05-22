@@ -8,14 +8,14 @@ pathappend () {
 }
 add_function_help "pathappend" "Append multiple paths {1} to PATH env variable avoiding duplication"
 
-repeat () {
+repeat_delay () {
   for (( i=1; i<=$2 ; i++ ))
   do
     echo `$1`
     sleep $3
   done
 }
-add_function_help "repeat" "Repeat a command {1} n times {2} with m seconds of delay between each time {3}"
+add_function_help "repeat_delay" "Repeat a command {1} n times {2} with m seconds of delay between each time {3}"
 
 timestamped () {
   while read command

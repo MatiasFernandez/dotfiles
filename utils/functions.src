@@ -56,11 +56,11 @@ ff() {
 }
 add_function_help "ff" "Find file matching pattern{1} inside directory{2}"
 
-# calculator: "? 3+13*3" will print 42
-function ? () { 
-  echo "$*" | bc -l; 
+# calculator: "calc 3+13*3" will print 42
+function calc () {
+  echo "$*" | bc -l;
 }
-add_function_help "?" "Calculator"
+add_function_help "calc" "Calculator"
 
 # Run command silently
 function quiet() { 

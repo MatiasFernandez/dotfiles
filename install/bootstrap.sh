@@ -125,6 +125,28 @@ link_file () {
   fi
 }
 
+select_shell () {
+  user 'Which shell(s) do you want to configure? [b]ash / [z]sh / [B]oth (default: b)'
+  read -n 1 shell_choice
+  echo ''
+  case "$shell_choice" in
+    z ) SETUP_BASH=false; SETUP_ZSH=true ;;
+    B ) SETUP_BASH=true;  SETUP_ZSH=true ;;
+    * ) SETUP_BASH=true;  SETUP_ZSH=false ;;
+  esac
+}
+
+setup_ohmyzsh () {
+  if [ -d "$HOME/.oh-my-zsh" ]; then
+    success 'oh-my-zsh already installed, skipping'
+    return
+  fi
+
+  info 'installing oh-my-zsh'
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  success 'oh-my-zsh installed'
+}
+
 install_dotfiles () {
   info 'installing dotfiles'
 
@@ -138,16 +160,30 @@ install_dotfiles () {
 
   link_file "Brewfile" "$HOME/.config/brewfile/Brewfile"
 
-  if [ `fgrep -c "bashrc.mine" ~/.bashrc` -eq 0 ]; then
-    echo "source ~/.bashrc.mine" >> ~/.bashrc
-    success "Added sourcing of .bashrc.mine to .bashrc"
-  else
-    success "Skipped sourcing of .bashrc.mine"
+  if [ "$SETUP_BASH" == "true" ]; then
+    if [ `fgrep -c "bashrc.mine" ~/.bashrc 2>/dev/null` -eq 0 ]; then
+      echo "source ~/.bashrc.mine" >> ~/.bashrc
+      success "Added sourcing of .bashrc.mine to .bashrc"
+    else
+      success "Skipped sourcing of .bashrc.mine (already present)"
+    fi
+  fi
+
+  if [ "$SETUP_ZSH" == "true" ]; then
+    setup_ohmyzsh
+    touch ~/.zshrc
+    if [ `fgrep -c "zshrc.mine" ~/.zshrc` -eq 0 ]; then
+      echo "source ~/.zshrc.mine" >> ~/.zshrc
+      success "Added sourcing of .zshrc.mine to .zshrc"
+    else
+      success "Skipped sourcing of .zshrc.mine (already present)"
+    fi
   fi
 }
 
 
 setup_gitconfig
+select_shell
 install_dotfiles
 
 echo ''
