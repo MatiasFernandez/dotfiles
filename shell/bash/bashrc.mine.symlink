@@ -1,11 +1,16 @@
 BASE_PATH=~/.dotfiles
 
-for file in $BASE_PATH/*/*.src
+for file in $BASE_PATH/shell/*/*.src
 do
   source $file
 done
 
-pathappend $BASE_PATH/bash/scripts
+if [ -e "$BASE_PATH/shell/bash/gitprompt/gitprompt.sh" ]
+then
+  source $BASE_PATH/shell/bash/gitprompt/gitprompt.sh
+fi
+
+pathappend $BASE_PATH/shell/bash/scripts
 
 # Local private dotfiles
 
@@ -15,20 +20,10 @@ if [ -e $PRIVATE_DOTFILES_ROOT ]
 then
   for file in $(find -H "$PRIVATE_DOTFILES_ROOT" -maxdepth 2 -name '*.src')
   do
-    source $file
+  	source $file
   done
 
   pathappend $PRIVATE_DOTFILES_ROOT/bin
 fi
 
 export PATH=/Users/matyf/Library/Python/3.9/bin:$PATH
-
-# Oh My Zsh
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="robbyrussell"
-plugins=(git)
-source $ZSH/oh-my-zsh.sh
-
-function dotreload() {
-  source ~/.zshrc.mine
-}
