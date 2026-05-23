@@ -9,12 +9,11 @@ configs/       # Tool configs (git, pry, Brewfile)
 shell/         # Shell config organized by topic
   base/        # Core utilities sourced by both bash and zsh
   bash/        # Bash-specific (includes git-prompt submodule)
-  zsh/         # Zsh config + antidote plugin list
+  zsh/         # Zsh config, antidote plugin list, powerlevel10k theme
   git/         # Git aliases and prompt config
-  dev/         # Dev aliases (Rails, Docker, Heroku, pnpm, SQS)
+  dev/         # Dev aliases (Rails, Docker, Heroku, pnpm, SQS, Sqitch)
   networking/  # Network utilities
-  utils/       # General utilities (extract, calc, backup, etc.)
-install/       # Reserved for future install scripts
+  utils/       # General utilities (includes zoxide init)
 bootstrap.sh   # Main install script
 ```
 
