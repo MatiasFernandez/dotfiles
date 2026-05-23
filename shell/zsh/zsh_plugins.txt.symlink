@@ -1,4 +1,4 @@
 zsh-users/zsh-completions
+Aloxaf/fzf-tab
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-syntax-highlighting
-junegunn/fzf path:shell kind:fpath
