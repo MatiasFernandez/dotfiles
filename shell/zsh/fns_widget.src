@@ -1,0 +1,12 @@
+if [ -n "$ZSH_VERSION" ]; then
+  _fns_zle() {
+    local selected
+    selected=$(_fns_pick)
+    if [ -n "$selected" ]; then
+      LBUFFER+="$selected"
+    fi
+    zle reset-prompt
+  }
+  zle -N _fns_zle
+  bindkey '^f' _fns_zle
+fi

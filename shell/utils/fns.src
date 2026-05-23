@@ -1,5 +1,4 @@
-## @utils Interactive finder for shell functions and aliases
-function fns() {
+function _fns_pick() {
   local dotfiles="${HOME}/.dotfiles"
 
   local results
@@ -30,10 +29,7 @@ function fns() {
     /^[^#[:space:]]/ { pending = 0 }
   ' "$dotfiles"/shell/*/*.src)
 
-  if [ -z "$results" ]; then
-    echo "No annotated functions or aliases found." >&2
-    return 1
-  fi
+  [ -z "$results" ] && return 1
 
   local formatted
   formatted=$(printf "%s\n" "$results" | awk -F'\t' \
@@ -43,5 +39,18 @@ function fns() {
     printf "%s\n" "$formatted" | fzf --no-sort | awk '{print $3}'
   else
     printf "%s\n" "$formatted"
+  fi
+}
+
+## @utils Find and insert a shell function or alias into the prompt
+function fns() {
+  local selected
+  selected=$(_fns_pick)
+  [ -z "$selected" ] && return
+
+  if [ -n "$ZSH_VERSION" ]; then
+    print -z "$selected"
+  else
+    echo "$selected"
   fi
 }
