@@ -1,0 +1,4 @@
+# brew-file: wraps `brew install/uninstall/tap/...` to keep ~/.config/brewfile/Brewfile in sync
+if command -v brew >/dev/null 2>&1 && [ -f "$(brew --prefix)/etc/brew-wrap" ]; then
+  source "$(brew --prefix)/etc/brew-wrap"
+fi
