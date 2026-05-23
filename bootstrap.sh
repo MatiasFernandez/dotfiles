@@ -136,15 +136,15 @@ select_shell () {
   esac
 }
 
-setup_ohmyzsh () {
-  if [ -d "$HOME/.oh-my-zsh" ]; then
-    success 'oh-my-zsh already installed, skipping'
+setup_antidote () {
+  if brew list antidote &>/dev/null; then
+    success 'antidote already installed, skipping'
     return
   fi
 
-  info 'installing oh-my-zsh'
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-  success 'oh-my-zsh installed'
+  info 'installing antidote'
+  brew install antidote
+  success 'antidote installed'
 }
 
 install_dotfiles () {
@@ -172,7 +172,7 @@ install_dotfiles () {
   fi
 
   if [ "$SETUP_ZSH" == "true" ]; then
-    setup_ohmyzsh
+    setup_antidote
     touch ~/.zshrc
     if [ `fgrep -c "zshrc.mine" ~/.zshrc` -eq 0 ]; then
       echo "source ~/.zshrc.mine" >> ~/.zshrc
