@@ -23,7 +23,20 @@ fi
 
 export PATH=/Users/matyf/Library/Python/3.9/bin:$PATH
 
-# Antidote plugin manager
+# zsh-completions: fpath must be set before compinit (per zsh-completions manual install docs)
+fpath=(~/Library/Caches/antidote/github.com/zsh-users/zsh-completions/src $fpath)
+
+# compinit must run before antidote so fzf-tab (and other completion plugins) initialize correctly
+autoload -Uz compinit && compinit
+
+# Completion styling
+zstyle ':completion:*' menu no                        # disable default menu; fzf-tab replaces it
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # case-insensitive matching
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"  # colorize file completions
+zstyle ':completion:*:descriptions' format '[%d]'     # show group descriptions in fzf-tab
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:*' switch-group '<' '>'              # switch between groups with < >
+
 source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
 antidote load
 

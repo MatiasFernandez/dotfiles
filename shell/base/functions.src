@@ -3,7 +3,7 @@ RESET="\033[0m"
 
 export FUNCTIONS_HELP="\\n"
 
-function functions() {
+function func() {
   echo -e $FUNCTIONS_HELP
 }
 
