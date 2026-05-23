@@ -10,8 +10,6 @@ then
   source $BASE_PATH/shell/bash/gitprompt/gitprompt.sh
 fi
 
-pathappend $BASE_PATH/shell/bash/scripts
-
 # Local private dotfiles
 
 PRIVATE_DOTFILES_ROOT=~/.priv-dotfiles
@@ -25,5 +23,3 @@ then
 
   pathappend $PRIVATE_DOTFILES_ROOT/bin
 fi
-
-export PATH=/Users/matyf/Library/Python/3.9/bin:$PATH
