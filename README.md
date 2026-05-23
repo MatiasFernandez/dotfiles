@@ -4,7 +4,7 @@ My personal macOS dotfiles for a Rails/Node/Go dev environment.
 
 ## What's included
 
-- **Zsh** config with [antidote](https://getantidote.github.io/) plugin manager (autosuggestions, syntax highlighting, fzf, completions)
+- **Zsh** config with [antidote](https://getantidote.github.io/) plugin manager (powerlevel10k, autosuggestions, syntax highlighting, fzf-tab, completions, atuin history search)
 - **Git** config with 40+ aliases and GitHub CLI credential integration
 - **Homebrew** [Brewfile](configs/macos/Brewfile) with my full toolset
 - **Pry** config with clipboard helpers
@@ -29,7 +29,6 @@ The bootstrap script will:
 ```
 configs/    tool configs (git, pry, Brewfile)
 shell/      shell config organized by topic
-install/    reserved for future install scripts
 ```
 
 Shell topics under `shell/` each contain `.src` files (sourced at shell init) and `.symlink` files (linked to `~/`). Adding a new topic directory with a `.src` file is enough for it to be picked up automatically.
