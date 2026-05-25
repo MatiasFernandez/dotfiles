@@ -32,7 +32,7 @@ function _fns_pick() {
   [ -z "$results" ] && return 1
 
   local formatted
-  formatted=$(printf "%s\n" "$results" | awk -F'\t' \
+  formatted=$(printf "%s\n" "$results" | sort -t$'\t' -k1,1r -k3,3r | awk -F'\t' \
     '{printf "%-12s  %-6s  %-20s  %s\n", $1, $2, $3, $4}')
 
   if command -v fzf > /dev/null 2>&1; then
