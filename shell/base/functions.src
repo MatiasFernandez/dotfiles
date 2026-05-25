@@ -1,3 +1,4 @@
+## @shell Reload shell config
 function dotreload() {
   source ~/.bashrc.mine
 }
