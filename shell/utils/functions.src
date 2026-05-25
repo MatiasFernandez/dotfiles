@@ -1,21 +1,17 @@
 if [[ "$(uname -s)" == "Linux" ]]; then
-# Grep over apt packages
+## @utils Grep over apt packages
 showpkg () {
   apt-cache pkgnames | grep -i "$1" | sort
   return;
 }
-add_function_help "showpkg" "Grep over apt packages"
 fi
 
-# function Extract for common file formats
+## @utils Extract various file types
 function extract {
  if [ -z "$1" ]; then
-    # display usage if no parameters given
     echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
  else
     if [ -f "$1" ] ; then
-        #NAME=${1%.*}
-        #mkdir $NAME && cd $NAME
         case "$1" in
           *.tar.bz2)   tar xvjf ./"$1"    ;;
           *.tar.gz)    tar xvzf ./"$1"    ;;
@@ -39,51 +35,46 @@ function extract {
     fi
 fi
 }
-add_function_help "extract" "Extract various file types"
 
-# Grep over processes
+## @utils Grep over running processes
 psg () {
   ps aux | grep -v grep | grep -i -e VSZ -e $1
 }
-add_function_help "psg" "Grep over running processes"
 
+## @utils Print public IP
 function publicip {
   res=$(curl -s checkip.dyndns.org | grep -Eo '[0-9\.]+')
   echo -e "Your public IP is: ${echo_bold_green} $res ${echo_normal}"
 }
-add_function_help "publicip" "Print public IP"
 
+## @utils Find file matching pattern{1} inside directory{2}
 ff() {
   find $2 -type f -regex $1
 }
-add_function_help "ff" "Find file matching pattern{1} inside directory{2}"
 
-# calculator: "calc 3+13*3" will print 42
+## @utils Calculator
 function calc () {
   echo "$*" | bc -l;
 }
-add_function_help "calc" "Calculator"
 
-# Run command silently
-function quiet() { 
-  $* &> /dev/null & 
+## @utils Run command silently
+function quiet() {
+  $* &> /dev/null &
 }
-add_function_help "quiet" "Run command silently"
 
-# Creates a backup of a file
+## @utils Create a timestamped copy of a file
 backup () {
   local filename=$1
   local filetime=$(date +%Y%m%d_%H%M%S)
   cp ${filename} ${filename}_${filetime}
 }
-add_function_help "backup" "Create a timestamped copy of a file"
 
-# Within [] ^ means "not". So [^ -~] means characters not between space and ~. 
-# So excluding control chars, this matches non ASCII characters, and is a more portable 
-# though slightly less accurate version of [^\x00-\x7f] below. The \+ means 1 or more and 
-# will get multibye characters to have a color shown around the complete character(s), 
+# Within [] ^ means "not". So [^ -~] means characters not between space and ~.
+# So excluding control chars, this matches non ASCII characters, and is a more portable
+# though slightly less accurate version of [^\x00-\x7f] below. The \+ means 1 or more and
+# will get multibye characters to have a color shown around the complete character(s),
 # rather than interspersed in each byte, thus corrupting the multibyte sequence
+## @utils Print nonascii characters of a file
 nonascii() {
   LANG=C grep --color=always -n '[^ -~]\+' $1
 }
-add_function_help "nonascii" "Print nonascii characters of a file"

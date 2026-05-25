@@ -1,12 +1,12 @@
+## @rails Migrations created since commit{1}. Defaults to master
 function migr_since() {
   git whatchanged ${1-master}..HEAD | grep "db/migrate"
 }
-add_function_help "migr_since" "Migrations created since commit{1}. Defaults to master"
 
+## @rails Run specs matching pattern{1}
 function specg() {
   find . | fgrep "spec.rb" | grep $1 | xargs bin/rspec
 }
-add_function_help "specg" "Run specs matching pattern{1}"
 
 ## @heroku Push to Heroku remote{1}. Use -f at the end to force push
 function hp() {
@@ -18,22 +18,22 @@ function ha() {
   heroku addons:open $1 -a $2
 }
 
+## @dev Expose directory{1} with a Ruby web server at port 9090{2}
 function webserver() {
   ruby -run -e httpd ${1-.} -p ${2-9090}
 }
-add_function_help "webserver" "Expose directory{1} with a web server at port 9090{2}"
 
-# PNPM
+## @pnpm Build pnpm package{1}
 function pb() {
   pnpm --filter "$1" build
 }
-add_function_help "pb" "Build pnpm package{1}"
 
+## @pnpm Build pnpm packages that changed since main@HEAD
 function pbchan() {
   pnpm --filter "[main]" build
 }
-add_function_help "pbchan" "Build pnpm packages that changed since main@HEAD"
 
+## @sqs List Localstack SQS queues with their sizes
 function sqs-sizes() {
   for q in $(aws --endpoint-url=http://localhost:4566 sqs list-queues --query 'QueueUrls[]' --output text); do
     echo "Queue: $q"
@@ -42,13 +42,13 @@ function sqs-sizes() {
       --attribute-names ApproximateNumberOfMessages ApproximateNumberOfMessagesNotVisible ApproximateNumberOfMessagesDelayed
   done
 }
-add_function_help "sqs-sizes" "List queues with their sizes"
 
+## @sqs List Localstack SQS queues
 function sqs-list() {
   aws --endpoint-url=http://localhost:4566 sqs list-queues
 }
-add_function_help "sqs-list" "List queues"
 
+## @sqs Peek all messages from a Localstack SQS queue
 function sqs-peek() {
   local QUEUE_URL=$1
   local ENDPOINT=${ENDPOINT:-http://localhost:4566}  # change if using real AWS
@@ -97,26 +97,26 @@ function sqs-peek() {
     fi
   done
 }
-add_function_help "sqs-peek" "Peek all messages from a queue"
 
+## @sqs Purge all messages from a Localstack SQS queue by name{1}
 function sqs-purge() {
   if [ -z "$1" ]; then
     echo "Usage: purge-local-queue <queue-name>"
     return 1
   fi
-  
+
   local queue_name=$1
   local queue_url=$(aws --endpoint-url=http://localhost:4566 sqs get-queue-url --queue-name "$queue_name" --query 'QueueUrl' --output text 2>/dev/null)
-  
+
   if [ -z "$queue_url" ]; then
     echo "Error: Queue '$queue_name' not found"
     return 1
   fi
-  
+
   echo "Purging queue: $queue_name"
   echo "Queue URL: $queue_url"
   aws --endpoint-url=http://localhost:4566 sqs purge-queue --queue-url "$queue_url"
-  
+
   if [ $? -eq 0 ]; then
     echo "✓ Queue purged successfully"
   else
@@ -124,4 +124,3 @@ function sqs-purge() {
     return 1
   fi
 }
-add_function_help "sqs-purge" "Purge all messages from a queue by name{1}"

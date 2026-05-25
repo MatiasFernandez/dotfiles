@@ -1,16 +1,3 @@
-GREEN="\033[32m"
-RESET="\033[0m"
-
-export FUNCTIONS_HELP="\\n"
-
-function func() {
-  echo -e $FUNCTIONS_HELP
-}
-
-function add_function_help() {
-  export FUNCTIONS_HELP="${FUNCTIONS_HELP}$GREEN$1$RESET: $2\\n"
-}
-
 function dotreload() {
   source ~/.bashrc.mine
 }
