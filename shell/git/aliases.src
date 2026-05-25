@@ -1,2 +1,5 @@
+## @git Git status shorthand
 alias gs="git status"
+
+## @git git command shorthand
 alias g="git"

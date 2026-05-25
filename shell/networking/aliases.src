@@ -1,2 +1,4 @@
+## @networking Monitor latency to home router and internet
 alias latmon='gping 10.1.1.1 8.8.8.8 lens.l.google.com'
+## @networking Monitor latency to office network and internet
 alias latofi='gping 192.168.1.4 8.8.8.8 lens.l.google.com'

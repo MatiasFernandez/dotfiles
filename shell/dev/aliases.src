@@ -1,26 +1,35 @@
 # Rails
+## @rails Set RAILS_ENV to test
 alias rtest="RAILS_ENV=test"
+## @rails Set RAILS_ENV to production
 alias rprod="RAILS_ENV=production"
+## @rails Grep Rails routes
 alias routesg="rake routes | grep"
 
 # String processing
+## @utils Ruby one-liner with field splitting (-n -a -e)
 alias rawk="ruby -nae"
+## @utils Ruby one-liner (-e)
 alias rawka="ruby -e"
 
-# Heroku
+## @heroku heroku command shorthand
 alias h="heroku"
+## @heroku Run a command on Heroku app{1}
 alias hr="heroku run -a"
+## @heroku Open Rails console on Heroku app{1}
 alias hrc="heroku run rails c -a"
 
 # Docker
+## @docker docker-compose shorthand
 alias dc="docker-compose"
 
-#Sqitch
+## @sqitch sqitch command shorthand
 alias sq="sqitch"
+## @sqitch List Sqitch plan newest-first
 alias sqls="sq plan | tail -r | less"
 
-#pnpm
+## pnpm command shorthand
 alias p="pnpm"
 
-#list serial devices
+## @utils Watch serial device list refresh every 0.5s
 alias lss="watch -n0.5 'ls /dev/{tty,cu}.*'"
