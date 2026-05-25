@@ -1,6 +1,14 @@
 function _fns_pick() {
   local dotfiles="${HOME}/.dotfiles"
 
+  local priv_dotfiles="${HOME}/.priv-dotfiles"
+  local src_files=("$dotfiles"/shell/*/*.src)
+  if [ -d "$priv_dotfiles" ]; then
+    while IFS= read -r f; do
+      src_files+=("$f")
+    done < <(find -L "$priv_dotfiles" -name "*.src" | sort)
+  fi
+
   local results
   results=$(awk '
     /^## @[a-zA-Z_-]+ / {
@@ -27,7 +35,7 @@ function _fns_pick() {
       pending = 0; next
     }
     /^[^#[:space:]]/ { pending = 0 }
-  ' "$dotfiles"/shell/*/*.src)
+  ' "${src_files[@]}")
 
   [ -z "$results" ] && return 1
 
