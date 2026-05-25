@@ -1,3 +1,4 @@
+## @bash Append multiple paths {1} to PATH env variable avoiding duplication
 pathappend () {
   for ARG in "$@"
   do
@@ -6,8 +7,8 @@ pathappend () {
     fi
   done
 }
-add_function_help "pathappend" "Append multiple paths {1} to PATH env variable avoiding duplication"
 
+## @utils Repeat a command {1} n times {2} with m seconds of delay between each time {3}
 repeat_delay () {
   for (( i=1; i<=$2 ; i++ ))
   do
@@ -15,12 +16,11 @@ repeat_delay () {
     sleep $3
   done
 }
-add_function_help "repeat_delay" "Repeat a command {1} n times {2} with m seconds of delay between each time {3}"
 
+## @utils Prepend an ISO8601 timestamp at the beginning of each line of the piped input
 timestamped () {
   while read command
-  do 
+  do
     echo "$(date +"%Y-%m-%dT%H:%M:%S%z") $command"
   done
 }
-add_function_help "timestamped" "Prepend an ISO8601 timestamp at the beginning of each line of the piped input"
