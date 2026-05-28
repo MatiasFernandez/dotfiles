@@ -1,6 +1,6 @@
 # fns — interactive shell function/alias finder
 #
-# Scans all *.src files under ~/.dotfiles/shell/ (and ~/.priv-dotfiles/ if present)
+# Scans all *.src / *.zsh / *.bash files under ~/.dotfiles/ (and ~/.priv-dotfiles/ if present)
 # for documented functions and aliases, then lets you pick one to insert into the
 # prompt without retyping it.
 #
@@ -36,11 +36,16 @@ function _fns_pick() {
   local dotfiles="${HOME}/.dotfiles"
 
   local priv_dotfiles="${HOME}/.priv-dotfiles"
-  local src_files=("$dotfiles"/shell/*.src "$dotfiles"/shell/*/*.src)
+  local src_files=("$dotfiles"/*/*.src)
+  if [ -n "$ZSH_VERSION" ]; then
+    src_files+=("$dotfiles"/*/*.zsh)
+  elif [ -n "$BASH_VERSION" ]; then
+    src_files+=("$dotfiles"/*/*.bash)
+  fi
   if [ -d "$priv_dotfiles" ]; then
     while IFS= read -r f; do
       src_files+=("$f")
-    done < <(find -L "$priv_dotfiles" -name "*.src" | sort)
+    done < <(find -L "$priv_dotfiles" \( -name "*.src" -o -name "*.zsh" -o -name "*.bash" \) | sort)
   fi
 
   local results

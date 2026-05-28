@@ -159,7 +159,7 @@ install_dotfiles () {
   done
 
   if [ "$(uname -s)" == "Darwin" ]; then
-    link_file "$DOTFILES_ROOT/configs/macos/Brewfile" "$HOME/.config/brewfile/Brewfile"
+    link_file "$DOTFILES_ROOT/homebrew/Brewfile" "$HOME/.config/brewfile/Brewfile"
   fi
 
   if [ "$SETUP_BASH" == "true" ]; then

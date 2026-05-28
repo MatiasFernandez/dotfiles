@@ -73,11 +73,6 @@ nonascii() {
   LANG=C grep --color=always -n '[^ -~]\+' $1
 }
 
-## @utils Reload shell config
-function dotreload() {
-  source ~/.bashrc.mine
-}
-
 ## @scripting Append multiple paths {1} to PATH env variable avoiding duplication
 pathappend () {
   for ARG in "$@"
@@ -103,4 +98,18 @@ timestamped () {
   do
     echo "$(date +"%Y-%m-%dT%H:%M:%S%z") $command"
   done
+}
+
+## @utils Ruby one-liner with field splitting (-n -a -e)
+alias rawk="ruby -nae"
+
+## @utils Ruby one-liner (-e)
+alias rawka="ruby -e"
+
+## @utils Watch serial device list refresh every 0.5s
+alias lss="watch -n0.5 'ls /dev/{tty,cu}.*'"
+
+## @utils Expose directory{1} with a Ruby web server at port 9090{2}
+function webserver() {
+  ruby -run -e httpd ${1-.} -p ${2-9090}
 }

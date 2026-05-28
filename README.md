@@ -1,12 +1,12 @@
 # dotfiles
 
-My personal macOS dotfiles for a Rails/Node/Go dev environment.
+My personal macOS dotfiles for a dev environment.
 
 ## What's included
 
 - **Zsh** config with [antidote](https://getantidote.github.io/) plugin manager (powerlevel10k, autosuggestions, syntax highlighting, fzf-tab, completions, atuin history search)
 - **Git** config with 40+ aliases and GitHub CLI credential integration
-- **Homebrew** [Brewfile](configs/macos/Brewfile) with my full toolset
+- **Homebrew** [Brewfile](homebrew/Brewfile) with my full toolset
 - **Pry** config with clipboard helpers
 - Topic-organized shell functions and aliases (dev, git, networking, utils)
 
@@ -26,12 +26,20 @@ The bootstrap script will:
 
 ## Structure
 
+Topic-based layout — each top-level folder owns everything for that tool.
+
 ```
-configs/    tool configs (git, pry, Brewfile)
-shell/      shell config organized by topic
+git/         gitconfig, git aliases
+zsh/         zshrc, plugins, p10k theme, fns widget
+bash/        bashrc, bash-only aliases, gitprompt
+dev/         rails, heroku, pnpm, localstack, docker, sqitch, pryrc
+homebrew/    Brewfile, brew-wrap init
+zoxide/      shell init (zsh + bash)
+networking/  latency monitors, public IP
+utils/       general helpers, fns picker
 ```
 
-Shell topics under `shell/` each contain `.src` files (sourced at shell init) and `.symlink` files (linked to `~/`). Adding a new topic directory with a `.src` file is enough for it to be picked up automatically.
+Extensions: `.src` sourced by both shells, `.zsh` zsh-only, `.bash` bash-only, `.symlink` linked to `~/`.
 
 ## Private config
 
