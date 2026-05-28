@@ -41,12 +41,6 @@ psg () {
   ps aux | grep -v grep | grep -i -e VSZ -e $1
 }
 
-## @utils Print public IP
-function publicip {
-  res=$(curl -s checkip.dyndns.org | grep -Eo '[0-9\.]+')
-  echo -e "Your public IP is: ${echo_bold_green} $res ${echo_normal}"
-}
-
 ## @utils Find file matching pattern{1} inside directory{2}
 ff() {
   find $2 -type f -regex $1
@@ -77,4 +71,36 @@ backup () {
 ## @utils Print nonascii characters of a file
 nonascii() {
   LANG=C grep --color=always -n '[^ -~]\+' $1
+}
+
+## @utils Reload shell config
+function dotreload() {
+  source ~/.bashrc.mine
+}
+
+## @scripting Append multiple paths {1} to PATH env variable avoiding duplication
+pathappend () {
+  for ARG in "$@"
+  do
+    if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
+        PATH="${PATH:+"$PATH:"}$ARG"
+    fi
+  done
+}
+
+## @utils Repeat a command {1} n times {2} with m seconds of delay between each time {3}
+repeat_delay () {
+  for (( i=1; i<=$2 ; i++ ))
+  do
+    echo `$1`
+    sleep $3
+  done
+}
+
+## @utils Prepend an ISO8601 timestamp at the beginning of each line of the piped input
+timestamped () {
+  while read command
+  do
+    echo "$(date +"%Y-%m-%dT%H:%M:%S%z") $command"
+  done
 }

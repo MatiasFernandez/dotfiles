@@ -7,13 +7,10 @@ macOS-focused dotfiles for a Rails/Node/Go dev environment.
 ```
 configs/       # Tool configs (git, pry, Brewfile)
 shell/         # Shell config organized by topic
-  base/        # Core utilities sourced by both bash and zsh
-  bash/        # Bash-specific (includes git-prompt submodule)
-  zsh/         # Zsh config, antidote plugin list, powerlevel10k theme
-  git/         # Git aliases and prompt config
-  dev/         # Dev aliases (Rails, Docker, Heroku, pnpm, SQS, Sqitch)
-  networking/  # Network utilities
-  utils/       # General utilities (includes zoxide init)
+  *.src        # Top-level topic files (git, brew, rails, networking, etc.)
+  bash/        # Bash-specific (aliases, gitprompt submodule)
+  utils/       # General utilities (zoxide init)
+  zsh/         # Zsh config, antidote plugin list, powerlevel10k theme, fns widget
 bootstrap.sh   # Main install script
 ```
 
@@ -22,9 +19,9 @@ bootstrap.sh   # Main install script
 Two file suffixes drive the install:
 
 - **`.symlink`** — linked to `~/.{basename}` by `bootstrap.sh` (e.g. `shell/zsh/zshrc.mine.symlink` → `~/.zshrc.mine`)
-- **`.src`** — sourced at shell init time; both `bashrc.mine` and `zshrc.mine` glob `shell/*/*.src`
+- **`.src`** — sourced at shell init time; both `bashrc.mine` and `zshrc.mine` glob `shell/*.src` and `shell/*/*.src`
 
-New topic? Create a directory under `shell/` with a `.src` file — it's picked up automatically.
+New topic? Add a `shell/<topic>.src` file (or a subdirectory with a `.src` file) — it's picked up automatically.
 
 ## Bootstrap
 

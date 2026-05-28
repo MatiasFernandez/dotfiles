@@ -1,38 +1,3 @@
-## @rails Migrations created since commit{1}. Defaults to master
-function migr_since() {
-  git whatchanged ${1-master}..HEAD | grep "db/migrate"
-}
-
-## @rails Run specs matching pattern{1}
-function specg() {
-  find . | fgrep "spec.rb" | grep $1 | xargs bin/rspec
-}
-
-## @heroku Push to Heroku remote{1}. Use -f at the end to force push
-function hp() {
-  git push $1 HEAD:master $2
-}
-
-## @heroku Open Heroku addon{1} on application{2}
-function ha() {
-  heroku addons:open $1 -a $2
-}
-
-## @dev Expose directory{1} with a Ruby web server at port 9090{2}
-function webserver() {
-  ruby -run -e httpd ${1-.} -p ${2-9090}
-}
-
-## @pnpm Build pnpm package{1}
-function pb() {
-  pnpm --filter "$1" build
-}
-
-## @pnpm Build pnpm packages that changed since main@HEAD
-function pbchan() {
-  pnpm --filter "[main]" build
-}
-
 ## @sqs List Localstack SQS queues with their sizes
 function sqs-sizes() {
   for q in $(aws --endpoint-url=http://localhost:4566 sqs list-queues --query 'QueueUrls[]' --output text); do

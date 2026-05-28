@@ -1,6 +1,6 @@
 BASE_PATH=~/.dotfiles
 
-for file in $BASE_PATH/shell/*/*.src
+for file in $BASE_PATH/shell/*.src $BASE_PATH/shell/*/*.src
 do
   source $file
 done

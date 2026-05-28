@@ -1,4 +1,11 @@
 ## @networking Monitor latency to home router and internet
 alias latmon='gping 10.1.1.1 8.8.8.8 lens.l.google.com'
+
 ## @networking Monitor latency to office network and internet
 alias latofi='gping 192.168.1.4 8.8.8.8 lens.l.google.com'
+
+## @networking Print public IP
+function publicip {
+  res=$(curl -s checkip.dyndns.org | grep -Eo '[0-9\.]+')
+  echo -e "Your public IP is: ${echo_bold_green} $res ${echo_normal}"
+}

@@ -1,0 +1,21 @@
+## @utils Ruby one-liner with field splitting (-n -a -e)
+alias rawk="ruby -nae"
+## @utils Ruby one-liner (-e)
+alias rawka="ruby -e"
+
+## @sqitch sqitch command shorthand
+alias sq="sqitch"
+## @sqitch List Sqitch plan newest-first
+alias sqls="sq plan | tail -r | less"
+
+## @utils Watch serial device list refresh every 0.5s
+alias lss="watch -n0.5 'ls /dev/{tty,cu}.*'"
+
+## @docker docker-compose shorthand
+alias dc="docker-compose"
+
+## @utils Expose directory{1} with a Ruby web server at port 9090{2}
+function webserver() {
+  ruby -run -e httpd ${1-.} -p ${2-9090}
+}
+
