@@ -82,10 +82,24 @@ function _fns_pick() {
   formatted=$(printf "%s\n" "$results" | sort -t$'\t' -k1,1r -k3,3r | awk -F'\t' \
     '{printf "%-12s  %-6s  %-20s  %s\n", $1, $2, $3, $4}')
 
+  local colorized
+  colorized=$(printf "%s\n" "$formatted" | awk '
+    BEGIN {
+      palette[1] = "\033[36m"; palette[2] = "\033[33m"; palette[3] = "\033[35m"
+      palette[4] = "\033[32m"; palette[5] = "\033[34m"; palette[6] = "\033[31m"
+      n = 0; prev = ""
+    }
+    {
+      cat = $1
+      if (cat != prev) { prev = cat; n = (n % 6) + 1 }
+      printf "%s%s\033[0m\n", palette[n], $0
+    }
+  ')
+
   if command -v fzf > /dev/null 2>&1; then
-    printf "%s\n" "$formatted" | fzf --no-sort | awk '{print $3}'
+    printf "%s\n" "$colorized" | fzf --no-sort --ansi | awk '{print $3}'
   else
-    printf "%s\n" "$formatted"
+    printf "%s\n" "$colorized"
   fi
 }
 
