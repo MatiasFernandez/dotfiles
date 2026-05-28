@@ -36,7 +36,7 @@ function _fns_pick() {
   local dotfiles="${HOME}/.dotfiles"
 
   local priv_dotfiles="${HOME}/.priv-dotfiles"
-  local src_files=("$dotfiles"/shell/*/*.src)
+  local src_files=("$dotfiles"/shell/*.src "$dotfiles"/shell/*/*.src)
   if [ -d "$priv_dotfiles" ]; then
     while IFS= read -r f; do
       src_files+=("$f")

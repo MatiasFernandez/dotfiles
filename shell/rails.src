@@ -1,0 +1,18 @@
+## @rails Set RAILS_ENV to test
+alias rtest="RAILS_ENV=test"
+
+## @rails Set RAILS_ENV to production
+alias rprod="RAILS_ENV=production"
+
+## @rails Grep Rails routes
+alias routesg="rake routes | grep"
+
+## @rails Migrations created since commit{1}. Defaults to master
+function migr_since() {
+  git whatchanged ${1-master}..HEAD | grep "db/migrate"
+}
+
+## @rails Run specs matching pattern{1}
+function specg() {
+  find . | fgrep "spec.rb" | grep $1 | xargs bin/rspec
+}

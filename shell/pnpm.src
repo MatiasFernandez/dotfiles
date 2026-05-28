@@ -1,0 +1,12 @@
+## @pnpm pnpm command shorthand
+alias p="pnpm"
+
+## @pnpm Build pnpm package{1}
+function pb() {
+  pnpm --filter "$1" build
+}
+
+## @pnpm Build pnpm packages that changed since main@HEAD
+function pbchan() {
+  pnpm --filter "[main]" build
+}

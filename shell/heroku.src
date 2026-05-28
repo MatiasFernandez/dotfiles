@@ -1,0 +1,18 @@
+## @heroku heroku command shorthand
+alias h="heroku"
+
+## @heroku Run a command on Heroku app{1}
+alias hr="heroku run -a"
+
+## @heroku Open Rails console on Heroku app{1}
+alias hrc="heroku run rails c -a"
+
+## @heroku Push to Heroku remote{1}. Use -f at the end to force push
+function hp() {
+  git push $1 HEAD:master $2
+}
+
+## @heroku Open Heroku addon{1} on application{2}
+function ha() {
+  heroku addons:open $1 -a $2
+}
