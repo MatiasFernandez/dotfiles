@@ -3,6 +3,3 @@ alias gs="git status"
 
 ## @git git command shorthand
 alias g="git"
-
-# For Bash git prompt
-GIT_PROMPT_FETCH_REMOTE_STATUS=0 

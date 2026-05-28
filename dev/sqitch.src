@@ -1,0 +1,4 @@
+## @sqitch sqitch command shorthand
+alias sq="sqitch"
+## @sqitch List Sqitch plan newest-first
+alias sqls="sq plan | tail -r | less"

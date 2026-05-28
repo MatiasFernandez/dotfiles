@@ -1,8 +1,8 @@
 BASE_PATH=~/.dotfiles
 
-for file in $BASE_PATH/shell/*.src $BASE_PATH/shell/*/*.src
+for file in $BASE_PATH/*/*.src $BASE_PATH/*/*.zsh
 do
-  source $file
+  [ -e "$file" ] && source $file
 done
 
 # Local private dotfiles
@@ -11,7 +11,7 @@ PRIVATE_DOTFILES_ROOT=~/.priv-dotfiles
 
 if [ -e $PRIVATE_DOTFILES_ROOT ]
 then
-  for file in $(find -H "$PRIVATE_DOTFILES_ROOT" -maxdepth 2 -name '*.src')
+  for file in $(find -H "$PRIVATE_DOTFILES_ROOT" -maxdepth 2 \( -name '*.src' -o -name '*.zsh' \))
   do
     source $file
   done
