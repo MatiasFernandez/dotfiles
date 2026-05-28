@@ -1,3 +1,37 @@
+# fns — interactive shell function/alias finder
+#
+# Scans all *.src files under ~/.dotfiles/shell/ (and ~/.priv-dotfiles/ if present)
+# for documented functions and aliases, then lets you pick one to insert into the
+# prompt without retyping it.
+#
+# USAGE
+#   fns              — open the picker; selected name is placed on the command line
+#   Ctrl-F (zsh)     — same as `fns`, bound via zle widget
+#
+# DOCUMENTING A FUNCTION OR ALIAS
+#   Place a comment of the form immediately above the definition:
+#
+#     ## @<category> <description>
+#     function my_func() { ... }
+#
+#     ## @git Push current branch and open a PR
+#     alias gpr='gh pr create --fill'
+#
+#   Rules:
+#     - The comment must be on the line directly before the definition.
+#     - Category is a single word (letters, digits, underscores, hyphens).
+#     - Both `function name()` and `name()` styles are recognised.
+#     - Aliases must have at least a 2-character name to be picked up.
+#
+# OUTPUT FORMAT
+#   Results are sorted by category then name and displayed as:
+#     <category>    <type>    <name>    <description>
+#
+#   If fzf is installed, an interactive fuzzy-search picker is shown and the
+#   selected name is written to the prompt (zsh: via `print -z`, bash: via echo).
+#   Without fzf the formatted list is printed to stdout.
+#
+
 function _fns_pick() {
   local dotfiles="${HOME}/.dotfiles"
 
