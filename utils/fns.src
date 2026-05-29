@@ -23,6 +23,14 @@
 #     - Both `function name()` and `name()` styles are recognised.
 #     - Aliases must have at least a 2-character name to be picked up.
 #
+# DOCUMENTING A GIT ALIAS (in ~/.gitconfig)
+#   Place the same comment style above the alias inside the [alias] section.
+#   The picker will insert `git <name>` and show the type as "git-alias".
+#
+#     [alias]
+#         ## @git Rebase interactively from a given commit
+#         rbi = "!f() { git rebase -i $1~1; }; f"
+#
 # OUTPUT FORMAT
 #   Results are sorted by category then name and displayed as:
 #     <category>    <type>    <name>    <description>
@@ -76,11 +84,36 @@ function _fns_pick() {
     /^[^#[:space:]]/ { pending = 0 }
   ' "${src_files[@]}")
 
+  local gitconfig="${HOME}/.gitconfig"
+  if [ -f "$gitconfig" ]; then
+    local git_results
+    git_results=$(awk '
+      /^\[alias\]/ { in_alias = 1; next }
+      /^\[/ { in_alias = 0; pending = 0; next }
+      in_alias && /^[[:space:]]*## @[a-zA-Z_-]+ / {
+        line = $0; sub(/^[[:space:]]*## /, "", line)
+        sp = index(line, " ")
+        cat = substr(line, 2, sp - 2)
+        desc = substr(line, sp + 1)
+        pending = 1; next
+      }
+      in_alias && pending && /^[[:space:]]*[a-zA-Z_][a-zA-Z0-9_-]* *= / {
+        name = $0; sub(/^[[:space:]]*/, "", name); sub(/ *=.*/, "", name)
+        print cat "\t" "git-alias" "\t" "git " name "\t" desc
+        pending = 0; next
+      }
+      in_alias { pending = 0 }
+    ' "$gitconfig")
+    [ -n "$git_results" ] && [ -n "$results" ] && results="$results
+$git_results"
+    [ -n "$git_results" ] && [ -z "$results" ] && results="$git_results"
+  fi
+
   [ -z "$results" ] && return 1
 
   local formatted
   formatted=$(printf "%s\n" "$results" | sort -t$'\t' -k1,1r -k3,3r | awk -F'\t' \
-    '{printf "%-12s  %-6s  %-20s  %s\n", $1, $2, $3, $4}')
+    '{printf "%-12s  %-9s  %-20s  %s\n", $1, $2, $3, $4}')
 
   local colorized
   colorized=$(printf "%s\n" "$formatted" | awk '
@@ -97,7 +130,9 @@ function _fns_pick() {
   ')
 
   if command -v fzf > /dev/null 2>&1; then
-    printf "%s\n" "$colorized" | fzf --no-sort --ansi | awk '{print $3}'
+    # col layout: %-12s  %-9s  %-20s  %s  → name starts at char 26 after stripping ANSI
+    printf "%s\n" "$colorized" | fzf --no-sort --ansi | \
+      awk '{gsub(/\033\[[0-9;]*m/,""); name=substr($0,26,20); gsub(/[[:space:]]+$/,"",name); print name}'
   else
     printf "%s\n" "$colorized"
   fi
