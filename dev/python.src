@@ -1,0 +1,20 @@
+## @python Activate the virtual environment in the current directory
+alias va='source .venv/bin/activate'
+
+## @python Deactivate the current virtual environment
+alias vd='deactivate'
+
+## @python Run Python script with uv
+alias uvr='uv run'
+
+## @python Run Python 2
+alias py='python'
+
+## @python Run Python 3
+alias py3='python3'
+
+## @python Create a new virtual environment in .venv
+alias mkvenv='python3 -m venv .venv'
+
+## @python Run ruff linter on current directory
+alias ruf='ruff check .'
