@@ -4,7 +4,7 @@ alias rtest="RAILS_ENV=test"
 ## @rails Set RAILS_ENV to production
 alias rprod="RAILS_ENV=production"
 
-## @rails Grep Rails routes
+## @rails Grep Rails routes matching pattern{1}
 alias routesg="rake routes | grep"
 
 ## @rails Migrations created since commit{1}. Defaults to master
