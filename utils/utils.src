@@ -1,12 +1,12 @@
 if [[ "$(uname -s)" == "Linux" ]]; then
-## @utils Grep over apt packages
+## @utils Grep over apt packages matching pattern{1}
 showpkg () {
   apt-cache pkgnames | grep -i "$1" | sort
   return;
 }
 fi
 
-## @utils Extract various file types
+## @utils Extract various file types from a file{1}
 function extract {
  if [ -z "$1" ]; then
     echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
@@ -36,7 +36,7 @@ function extract {
 fi
 }
 
-## @utils Grep over running processes
+## @utils Grep over running processes matching pattern{1}
 psg () {
   ps aux | grep -v grep | grep -i -e VSZ -e $1
 }
@@ -46,17 +46,17 @@ ff() {
   find $2 -type f -regex $1
 }
 
-## @utils Calculator
+## @utils Calculator for an expression{1}
 function calc () {
   echo "$*" | bc -l;
 }
 
-## @utils Run command silently
+## @utils Run command{1} silently
 function quiet() {
   $* &> /dev/null &
 }
 
-## @utils Create a timestamped copy of a file
+## @utils Create a timestamped copy of a file{1}
 backup () {
   local filename=$1
   local filetime=$(date +%Y%m%d_%H%M%S)
@@ -68,7 +68,7 @@ backup () {
 # though slightly less accurate version of [^\x00-\x7f] below. The \+ means 1 or more and
 # will get multibye characters to have a color shown around the complete character(s),
 # rather than interspersed in each byte, thus corrupting the multibyte sequence
-## @utils Print nonascii characters of a file
+## @utils Print nonascii characters of a file{1}
 nonascii() {
   LANG=C grep --color=always -n '[^ -~]\+' $1
 }
