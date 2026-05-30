@@ -119,30 +119,25 @@ function _fns_pick() {
 
   [ -z "$results" ] && return 1
 
-  local formatted
-  formatted=$(printf "%s\n" "$results" | sort -t$'\t' -k1,1r -k3,3r | awk -F'\t' \
-    '{printf "%-12s  %-9s  %-20s  %s\n", $1, $2, $3, $4}')
-
-  local colorized
-  colorized=$(printf "%s\n" "$formatted" | awk '
+  local rows
+  rows=$(printf "%s\n" "$results" | sort -t$'\t' -k1,1r -k3,3r | awk -F'\t' '
     BEGIN {
-      palette[1] = "\033[36m"; palette[2] = "\033[33m"; palette[3] = "\033[35m"
-      palette[4] = "\033[32m"; palette[5] = "\033[34m"; palette[6] = "\033[31m"
-      n = 0; prev = ""
+      palette[1]="\033[36m"; palette[2]="\033[33m"; palette[3]="\033[35m"
+      palette[4]="\033[32m"; palette[5]="\033[34m"; palette[6]="\033[31m"
+      n=0; prev=""
     }
     {
-      cat = $1
-      if (cat != prev) { prev = cat; n = (n % 6) + 1 }
-      printf "%s%s\033[0m\n", palette[n], $0
-    }
-  ')
+      if ($1 != prev) { prev=$1; n=(n%6)+1 }
+      display = sprintf("%-12s  %-9s  %-20s  %s", $1, $2, $3, $4)
+      printf "%s%s\033[0m\t%s\n", palette[n], display, $3
+    }')
 
   if command -v fzf > /dev/null 2>&1; then
-    # col layout: %-12s  %-9s  %-20s  %s  → name starts at char 26 after stripping ANSI
-    printf "%s\n" "$colorized" | fzf --no-sort --ansi | \
-      awk '{gsub(/\033\[[0-9;]*m/,""); name=substr($0,26,20); gsub(/[[:space:]]+$/,"",name); print name}'
+    printf "%s\n" "$rows" \
+      | fzf --no-sort --ansi --delimiter='\t' --with-nth=1 \
+      | awk -F'\t' '{print $2}'
   else
-    printf "%s\n" "$colorized"
+    printf "%s\n" "$rows" | awk -F'\t' '{print $1}'
   fi
 }
 
