@@ -2,38 +2,55 @@
 	path = ~/.gitconfig.local
 [alias]
 	alias = "!f() { git config --get-regexp "^alias." ; }; f"
+	## @git Show how many commits the current branch is behind origin/main
 	bm = !git fetch && echo Commits behind origin/main:  $(git rev-list --count $(git rev-parse --abbrev-ref HEAD)..origin/main)
 	br = branch
-	chspecs = !git fch | grep "_spec.rb" | xargs bin/rspec
 	ci = commit
+	cia = commit --amend
 	cm = commit -m
 	co = checkout
-	fch = !git --no-pager diff --name-only --diff-filter='ACMRTUXB' origin/develop...
+	## @git List files changed on this branch vs origin/main
+	fch = !git --no-pager diff --name-only --diff-filter='ACMRTUXB' origin/main...
+	## @git Find commits that added files matching a pattern{1}
 	find-added = "!f() { git log --diff-filter=A --compact-summary --pretty=format:\"%C(yellow)commit %H%nAuthor: %an <%ae>%nDate: %ad (%ar)\" -- \"*$1*\"; }; f"
+	## @git Find commits that added or modified files matching a pattern{1}
 	find-added-changed = "!f() { git log --diff-filter=AM --compact-summary --pretty=format:\"%C(yellow)commit %H%nAuthor: %an <%ae>%nDate: %ad (%ar)\" -- \"*$1*\"; }; f"
+	## @git Find commits that modified files matching a pattern{1}
 	find-changed = "!f() { git log --diff-filter=M --compact-summary --pretty=format:\"%C(yellow)commit %H%nAuthor: %an <%ae>%nDate: %ad (%ar)\" -- \"*$1*\"; }; f"
+	## @git Find commits that deleted files matching a pattern{1}
 	find-deleted = "!f() { git log --diff-filter=D --compact-summary --pretty=format:\"%C(yellow)commit %H%nAuthor: %an <%ae>%nDate: %ad (%ar)\" -- \"*$1*\"; }; f"
+	## @git Grep history for commits adding/removing a string{1} (pickaxe)
 	g = "!f() { git log --oneline --name-status -S \"$1\"; }; f"
+	## @git Case-insensitive pickaxe grep of history for a string{1}
 	gi = "!f() { git log --oneline --name-status -i -S \"$1\"; }; f"
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	p = !git push --set-upstream origin `git rev-parse --abbrev-ref HEAD`
 	pf = push --force-with-lease
 	qci = commit --no-verify
+	## @git Quick commit with message skipping hooks
 	qcm = commit --no-verify -m
 	rbc = !EDITOR=cat git rebase --continue
-	## @git Rebase interactively from a given commit{1}
 	rbi = "!f() { git rebase -i $1~1; }; f"
+	## @git Rebase a branch{2} onto a new base{1}
 	rbonto = "!f() { git rebase --onto $1 $2~1; }; f"
+	## @git Fetch and rebase the current branch onto origin/main
 	rbm = !git fetch && git rebase origin/main
+	## @git Stash changes with a message{1}
 	s = "!f() { git stash push -m \"$*\"; }; f"
+	## @git Apply the stash matching a search term{1}
 	sa = "!f() { git stash apply $(git sgrep "$1"); }; f"
+	## @git Drop the stash matching a search term{1}
 	sd = "!f() { git stash drop $(git sgrep "$1"); }; f"
+	## @git Find a stash ref matching a search term{1}
 	sgrep = "!f() { ref=$(git --no-pager stash list | grep "$1" | cut -d: -f1 | head -n1); echo ${ref:-<no_match>}; }; f"
+	## @git List stashes
 	sl = stash list
+	## @git Show the stash matching a search term{1} as a patch
 	ss = "!f() { git stash show $(git sgrep "$1") -p; }; f"
 	uncommit = reset HEAD^1
+	## @git Stage everything and commit as "WIP"
 	wip = !git add -A && git commit -m "WIP"
-    
+
 [push]
 	default = simple
 [filter "lfs"]
@@ -46,10 +63,10 @@
 [init]
 	defaultBranch = main
 [credential "https://github.com"]
-	helper = 
+	helper =
 	helper = !/opt/homebrew/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
+	helper =
 	helper = !/opt/homebrew/bin/gh auth git-credential
 [core]
 	excludesfile = /Users/matyf/.gitignore_global
