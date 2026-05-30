@@ -111,9 +111,10 @@ function _fns_pick() {
       }
       in_alias { pending = 0 }
     ' "$gitconfig")
-    [ -n "$git_results" ] && [ -n "$results" ] && results="$results
-$git_results"
-    [ -n "$git_results" ] && [ -z "$results" ] && results="$git_results"
+    if [ -n "$git_results" ]; then
+      local nl=$'\n'
+      results="${results:+$results$nl}$git_results"
+    fi
   fi
 
   [ -z "$results" ] && return 1
