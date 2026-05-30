@@ -44,11 +44,16 @@ function _fns_pick() {
   local dotfiles="${HOME}/.dotfiles"
 
   local priv_dotfiles="${HOME}/.priv-dotfiles"
-  local src_files=("$dotfiles"/*/*.src)
+  local src_files=()
   if [ -n "$ZSH_VERSION" ]; then
-    src_files+=("$dotfiles"/*/*.zsh)
+    setopt local_options null_glob          # restored automatically on return
+    src_files=("$dotfiles"/*/*.src "$dotfiles"/*/*.zsh)
   elif [ -n "$BASH_VERSION" ]; then
-    src_files+=("$dotfiles"/*/*.bash)
+    shopt -s nullglob
+    src_files=("$dotfiles"/*/*.src "$dotfiles"/*/*.bash)
+    shopt -u nullglob
+  else
+    src_files=("$dotfiles"/*/*.src)
   fi
   if [ -d "$priv_dotfiles" ]; then
     while IFS= read -r f; do
@@ -56,8 +61,9 @@ function _fns_pick() {
     done < <(find -L "$priv_dotfiles" \( -name "*.src" -o -name "*.zsh" -o -name "*.bash" \) | sort)
   fi
 
-  local results
-  results=$(awk '
+  local results=""
+  if [ ${#src_files[@]} -gt 0 ]; then
+    results=$(awk '
     /^## @[a-zA-Z0-9_-]+ / {
       rest = substr($0, 4)
       sp   = index(rest, " ")
@@ -83,6 +89,7 @@ function _fns_pick() {
     }
     /^[^#[:space:]]/ { pending = 0 }
   ' "${src_files[@]}")
+  fi
 
   local gitconfig="${HOME}/.gitconfig"
   if [ -f "$gitconfig" ]; then
