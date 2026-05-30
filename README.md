@@ -5,7 +5,7 @@ My personal macOS dotfiles for a dev environment.
 ## What's included
 
 - **Zsh** config with [antidote](https://getantidote.github.io/) plugin manager (powerlevel10k, autosuggestions, syntax highlighting, fzf-tab, completions, atuin history search)
-- **Git** config with 40+ aliases and GitHub CLI credential integration
+- **Git** config with 30+ aliases and GitHub CLI credential integration
 - **Homebrew** [Brewfile](homebrew/Brewfile) with my full toolset
 - **Pry** config with clipboard helpers
 - Topic-organized shell functions and aliases (dev, git, networking, utils)
@@ -32,7 +32,7 @@ Topic-based layout — each top-level folder owns everything for that tool.
 git/         gitconfig, git aliases
 zsh/         zshrc, plugins, p10k theme, fns widget
 bash/        bashrc, bash-only aliases, gitprompt
-dev/         rails, heroku, pnpm, localstack, docker, sqitch, pryrc
+dev/         rails, heroku, pnpm, python, localstack, docker, sqitch, pryrc
 homebrew/    Brewfile, brew-wrap init
 zoxide/      shell init (zsh + bash)
 networking/  latency monitors, public IP
