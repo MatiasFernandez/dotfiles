@@ -41,6 +41,44 @@ utils/       general helpers, fns picker
 
 Extensions: `.src` sourced by both shells, `.zsh` zsh-only, `.bash` bash-only, `.symlink` linked to `~/`.
 
+## Documenting functions & aliases
+
+Functions and aliases are made discoverable through the `fns` picker (run `fns`, or
+press `Ctrl-F` in zsh) — a fuzzy finder that lists everything documented and drops the
+selected name onto the command line.
+
+To document a definition, put a comment of the form `## @<category> <description>` on the
+line **directly above** it. Category is a single word (letters, digits, `_`, `-`).
+
+```sh
+## @utils Create a timestamped copy of a file
+backup() { cp "$1" "$1_$(date +%Y%m%d_%H%M%S)"; }
+
+## @docker docker-compose shorthand
+alias dc="docker-compose"
+```
+
+Git aliases work the same way — add the comment above the alias inside the `[alias]`
+section of [git/gitconfig.symlink](git/gitconfig.symlink); the picker inserts `git <name>`.
+
+### Argument references — `{N}`
+
+When a definition takes positional arguments, tag the word in the description that the
+argument fills with `{N}`, where `N` is the argument position. This makes the mapping
+between description and arguments explicit:
+
+```sh
+## @utils Find file matching pattern{1} inside directory{2}
+ff() { find "$2" -type f -regex "$1"; }
+
+## @rails Migrations created since commit{1}. Defaults to master
+migr_since() { git whatchanged "${1-master}"..HEAD | grep "db/migrate"; }
+```
+
+Here `pattern{1}` ↔ `$1`, `directory{2}` ↔ `$2`. The tag attaches directly to the word
+(no space) and may point at a literal default too (e.g. `port 9090{2}`). For aliases that
+collect all arguments (`$*` / `$@`), tag the collective noun with `{1}` (e.g. `message{1}`).
+
 ## Private config
 
 Both `~/.bashrc.mine` and `~/.zshrc.mine` will source `~/.priv-dotfiles/` if it exists — useful for secrets and machine-local overrides that shouldn't live in a public repo.
