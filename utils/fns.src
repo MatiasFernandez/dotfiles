@@ -137,7 +137,11 @@ function _fns_pick() {
       | fzf --no-sort --ansi --delimiter='\t' --with-nth=1 \
       | awk -F'\t' '{print $2}'
   else
-    printf "%s\n" "$rows" | awk -F'\t' '{print $1}'
+    if [ -t 1 ]; then
+      printf "%s\n" "$rows" | awk -F'\t' '{print $1}'
+    else
+      printf "%s\n" "$rows" | awk -F'\t' '{ gsub(/\033\[[0-9;]*m/, "", $1); print $1 }'
+    fi
   fi
 }
 
