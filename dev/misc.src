@@ -1,0 +1,12 @@
+if [[ "$OSTYPE" == darwin* ]]; then
+  ## @dev List exported symbols from a dylib{1}, optionally filtered by prefix{2}
+  dylib-symbols() {
+    local lib="${1:?Usage: dylib-symbols <path/to/lib.dylib> [symbol_prefix]}"
+    local prefix="${2:-}"
+    if [[ -n "$prefix" ]]; then
+      nm -gUj "$lib" | grep "^_${prefix}" | sed 's/^_//' | sort
+    else
+      nm -gUj "$lib" | grep "^_" | sed 's/^_//' | sort
+    fi
+  }
+fi
