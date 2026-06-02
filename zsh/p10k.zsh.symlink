@@ -428,6 +428,9 @@
       res+="${meta}:${clean}${(V)VCS_STATUS_REMOTE_BRANCH//\%/%%}"
     fi
 
+    # Show ↑? when branch has no upstream tracking remote (never pushed).
+    [[ -n $VCS_STATUS_LOCAL_BRANCH && -z $VCS_STATUS_REMOTE_BRANCH ]] && res+=" %13F↑?"
+
     # Display "wip" if the latest commit's summary contains "wip" or "WIP".
     if [[ $VCS_STATUS_COMMIT_SUMMARY == (|*[^[:alnum:]])(wip|WIP)(|[^[:alnum:]]*) ]]; then
       res+=" ${modified}wip"
