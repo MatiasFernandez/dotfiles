@@ -31,6 +31,11 @@
 #         ## @git Rebase interactively from a given commit
 #         rbi = "!f() { git rebase -i $1~1; }; f"
 #
+# FILTERING
+#   Only entries whose name is currently defined in the shell (as a function or
+#   alias) are shown. This means the picker reflects what is actually available
+#   in the current terminal, not everything documented in the dotfiles.
+#
 # OUTPUT FORMAT
 #   Results are sorted by category then name and displayed as:
 #     <category>    <type>    <name>    <description>

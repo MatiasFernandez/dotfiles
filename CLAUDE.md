@@ -14,7 +14,7 @@ Topic-based layout (Holman-style). Each top-level folder is a topic containing a
 git/           # gitconfig.symlink, git.src (aliases)
 zsh/           # zshrc.mine.symlink, plugins, p10k theme, fns_widget.zsh
 bash/          # bashrc.mine.symlink, bash.bash, init.bash, gitprompt submodule
-dev/           # rails, heroku, pnpm, python, localstack, docker, sqitch, pryrc.symlink
+dev/           # rails, heroku, pnpm, python, localstack, docker, sqitch, misc, pryrc.symlink
 homebrew/      # Brewfile, init.src (brew-wrap)
 zoxide/        # init.zsh, init.bash
 networking/    # networking.src (latmon, latofi, publicip)
@@ -52,7 +52,7 @@ Interactively:
 
 Zsh uses **antidote** (Homebrew). Plugins are in `zsh/zsh_plugins.txt.symlink`.
 
-In `zsh/zshrc.mine.symlink`, ordering is load-bearing: `fpath` is extended, then `compinit` runs, then `antidote load` — all after the topic files are sourced. Reorder with care; fzf-tab and the completion plugins break if `compinit` doesn't run before antidote. Run `dotreload` (zsh) to re-source the config after edits.
+In `zsh/zshrc.mine.symlink`, ordering is load-bearing: `fpath` is extended, then `compinit` runs, then `antidote load` — all after the topic files are sourced. Reorder with care; fzf-tab and the completion plugins break if `compinit` doesn't run before antidote. Run `dotreload` (defined for both zsh and bash) to re-source the config after edits.
 
 ## Private Config
 
