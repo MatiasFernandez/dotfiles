@@ -61,9 +61,25 @@ function _fns_pick() {
     done < <(find -L "$priv_dotfiles" \( -name "*.src" -o -name "*.zsh" -o -name "*.bash" \) | sort)
   fi
 
+  # Only list functions/aliases that are actually defined in the current shell,
+  # so the picker doesn't advertise entries unavailable in this terminal/OS.
+  local fns_filter=1 fns_defined=""
+  if [ -n "$ZSH_VERSION" ]; then
+    fns_defined=$'\n'"${(kF)functions}"$'\n'"${(kF)aliases}"
+  elif [ -n "$BASH_VERSION" ]; then
+    fns_defined=$'\n'"$(compgen -A function; compgen -a)"
+  else
+    fns_filter=0   # unknown shell: no reliable introspection, show everything
+  fi
+
   local results=""
   if [ ${#src_files[@]} -gt 0 ]; then
-    results=$(awk '
+    results=$(FNS_DEFINED="$fns_defined" FNS_FILTER="$fns_filter" awk '
+    BEGIN {
+      filter = (ENVIRON["FNS_FILTER"] == "1")
+      n = split(ENVIRON["FNS_DEFINED"], a, "\n")
+      for (i = 1; i <= n; i++) if (a[i] != "") defined[a[i]] = 1
+    }
     /^[[:space:]]*## @[a-zA-Z0-9_-]+ / {
       line = $0; sub(/^[[:space:]]*## /, "", line)
       sp   = index(line, " ")
@@ -74,16 +90,19 @@ function _fns_pick() {
     }
     pending && /^[[:space:]]*function [a-zA-Z_][a-zA-Z0-9_-]*/ {
       name = $2; sub(/\(.*/, "", name)
+      if (filter && !(name in defined)) { pending = 0; next }
       print cat "\t" "func" "\t" name "\t" desc
       pending = 0; next
     }
     pending && /^[[:space:]]*[a-zA-Z_][a-zA-Z0-9_-]*[[:space:]]*\(\)/ {
       name = $0; sub(/^[[:space:]]*/, "", name); sub(/[[:space:]]*\(.*/, "", name)
+      if (filter && !(name in defined)) { pending = 0; next }
       print cat "\t" "func" "\t" name "\t" desc
       pending = 0; next
     }
     pending && /^[[:space:]]*alias [a-zA-Z_][a-zA-Z0-9_][a-zA-Z0-9_-]*=/ {
       name = $2; sub(/=.*/, "", name)
+      if (filter && !(name in defined)) { pending = 0; next }
       print cat "\t" "alias" "\t" name "\t" desc
       pending = 0; next
     }
