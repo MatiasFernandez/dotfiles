@@ -64,25 +64,25 @@ function _fns_pick() {
   local results=""
   if [ ${#src_files[@]} -gt 0 ]; then
     results=$(awk '
-    /^## @[a-zA-Z0-9_-]+ / {
-      rest = substr($0, 4)
-      sp   = index(rest, " ")
-      cat  = substr(rest, 2, sp - 2)
-      desc = substr(rest, sp + 1)
+    /^[[:space:]]*## @[a-zA-Z0-9_-]+ / {
+      line = $0; sub(/^[[:space:]]*## /, "", line)
+      sp   = index(line, " ")
+      cat  = substr(line, 2, sp - 2)
+      desc = substr(line, sp + 1)
       pending = 1
       next
     }
-    pending && /^function [a-zA-Z_][a-zA-Z0-9_-]*/ {
+    pending && /^[[:space:]]*function [a-zA-Z_][a-zA-Z0-9_-]*/ {
       name = $2; sub(/\(.*/, "", name)
       print cat "\t" "func" "\t" name "\t" desc
       pending = 0; next
     }
-    pending && /^[a-zA-Z_][a-zA-Z0-9_-]*[[:space:]]*\(\)/ {
-      name = $0; sub(/[[:space:]]*\(.*/, "", name)
+    pending && /^[[:space:]]*[a-zA-Z_][a-zA-Z0-9_-]*[[:space:]]*\(\)/ {
+      name = $0; sub(/^[[:space:]]*/, "", name); sub(/[[:space:]]*\(.*/, "", name)
       print cat "\t" "func" "\t" name "\t" desc
       pending = 0; next
     }
-    pending && /^alias [a-zA-Z_][a-zA-Z0-9_][a-zA-Z0-9_-]*=/ {
+    pending && /^[[:space:]]*alias [a-zA-Z_][a-zA-Z0-9_][a-zA-Z0-9_-]*=/ {
       name = $2; sub(/=.*/, "", name)
       print cat "\t" "alias" "\t" name "\t" desc
       pending = 0; next
