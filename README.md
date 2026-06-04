@@ -44,8 +44,8 @@ Extensions: `.src` sourced by both shells, `.zsh` zsh-only, `.bash` bash-only, `
 ## Documenting functions & aliases
 
 Functions and aliases are made discoverable through the `fns` picker (run `fns`, or
-press `Ctrl-F` in zsh) — a fuzzy finder that lists everything documented and drops the
-selected name onto the command line.
+press `Ctrl-F` in zsh) — a fuzzy finder that lists documented definitions that are
+currently defined in the shell, and drops the selected name onto the command line.
 
 To document a definition, put a comment of the form `## @<category> <description>` on the
 line **directly above** it. Category is a single word (letters, digits, `_`, `-`).
