@@ -1,3 +1,7 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
 # Dotfiles
 
 macOS-focused dotfiles for a dev environment.
@@ -27,6 +31,10 @@ bootstrap.sh   # Main install script
 
 New topic? Create a directory with a `.src` file — it's picked up automatically by both rc files.
 
+## How Config Loads
+
+There is no central manifest. At shell startup the rc file (`zsh/zshrc.mine.symlink` or `bash/bashrc.mine.symlink`) globs `~/.dotfiles/*/*.src` plus its shell-specific extension (`*.zsh` or `*.bash`) and sources every match. Adding a file under a topic folder is all that's needed to wire it in — load order is whatever the glob yields (alphabetical by directory), so don't rely on cross-file ordering. After that, each rc file sources `~/.priv-dotfiles/` if present.
+
 ## Bootstrap
 
 ```bash
@@ -43,6 +51,8 @@ Interactively:
 ## Shell Manager
 
 Zsh uses **antidote** (Homebrew). Plugins are in `zsh/zsh_plugins.txt.symlink`.
+
+In `zsh/zshrc.mine.symlink`, ordering is load-bearing: `fpath` is extended, then `compinit` runs, then `antidote load` — all after the topic files are sourced. Reorder with care; fzf-tab and the completion plugins break if `compinit` doesn't run before antidote. Run `dotreload` (zsh) to re-source the config after edits.
 
 ## Private Config
 
