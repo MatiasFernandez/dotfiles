@@ -113,3 +113,25 @@ alias lss="watch -n0.5 'ls /dev/{tty,cu}.*'"
 function webserver() {
   ruby -run -e httpd ${1-.} -p ${2-9090}
 }
+
+## @utils Move src{1} to dest{2}, replacing the original with a symlink to it
+mvln() {
+  [[ $# -eq 2 ]] || { echo "usage: mvln SRC DEST" >&2; return 2; }
+  local src dir base dest
+  # Absolutize SRC without following a leaf symlink (resolve parent dirs only),
+  # so an existing symlink is moved as-is rather than its target.
+  dir=$(cd -- "$(dirname -- "$1")" 2>/dev/null && pwd) || { echo "mvln: '$1' does not exist" >&2; return 1; }
+  base=$(basename -- "$1")
+  src="$dir/$base"
+  [[ -e $src || -L $src ]] || { echo "mvln: '$1' does not exist" >&2; return 1; }
+
+  dest=$2
+  [[ -d $dest ]] && dest="$dest/$base"
+  [[ -e $dest || -L $dest ]] && { echo "mvln: '$dest' already exists" >&2; return 1; }
+  dir=$(cd -- "$(dirname -- "$dest")" 2>/dev/null && pwd) || { echo "mvln: dest dir for '$2' does not exist" >&2; return 1; }
+  dest="$dir/$(basename -- "$dest")"
+
+  mv -- "$src" "$dest" || return 1
+  ln -s -- "$dest" "$src"
+  echo "$src -> $dest"
+}
