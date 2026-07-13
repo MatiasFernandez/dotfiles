@@ -3,3 +3,98 @@ alias gs="git status"
 
 ## @git git command shorthand
 alias g="git"
+
+## @git Report local branches vs their PR status on GitHub (merged / open / unknown)
+git-branch-status() {
+  if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    echo "Not inside a git repository" >&2
+    return 1
+  fi
+  if ! command -v gh >/dev/null 2>&1; then
+    echo "gh CLI not found — install with 'brew install gh'" >&2
+    return 1
+  fi
+
+  local remote="${1:-origin}"
+  local default_branch="$(git symbolic-ref "refs/remotes/${remote}/HEAD" 2>/dev/null | sed "s@^refs/remotes/${remote}/@@")"
+  default_branch="${default_branch:-main}"
+
+  echo "Fetching and pruning ${remote}..." >&2
+  git fetch --prune "${remote}" >/dev/null 2>&1
+
+  local current_branch="$(git branch --show-current)"
+
+  local merged_heads="$(gh pr list --state merged --limit 500 --json headRefName --jq '.[].headRefName' 2>/dev/null)"
+  local open_heads="$(gh pr list --state open --limit 500 --json headRefName,number --jq '.[] | "\(.headRefName)\t\(.number)"' 2>/dev/null)"
+
+  local safe_to_delete=() open_pr=() unknown=()
+
+  while IFS= read -r branch; do
+    [ -z "$branch" ] && continue
+    [ "$branch" = "$default_branch" ] && continue
+
+    local open_line="$(echo "$open_heads" | awk -F'\t' -v b="$branch" '$1==b{print $2; exit}')"
+
+    if [ -n "$open_line" ]; then
+      open_pr+=("${branch} (PR #${open_line})")
+    elif echo "$merged_heads" | grep -qx "$branch"; then
+      if [ "$branch" = "$current_branch" ]; then
+        safe_to_delete+=("${branch} (merged — currently checked out)")
+      else
+        safe_to_delete+=("$branch")
+      fi
+    else
+      unknown+=("$branch")
+    fi
+  done < <(git for-each-ref --format='%(refname:short)' refs/heads/)
+
+  echo "=== Merged remotely — safe to delete (${#safe_to_delete[@]}) ==="
+  printf '  %s\n' "${safe_to_delete[@]}"
+  echo
+  echo "=== Open PR — keep (${#open_pr[@]}) ==="
+  printf '  %s\n' "${open_pr[@]}"
+  echo
+  echo "=== No PR found (local-only / temp) — keep (${#unknown[@]}) ==="
+  printf '  %s\n' "${unknown[@]}"
+}
+
+## @git Delete local branches that GitHub confirms are merged (interactive)
+git-clean-merged() {
+  if ! command -v gh >/dev/null 2>&1; then
+    echo "gh CLI not found — install with 'brew install gh'" >&2
+    return 1
+  fi
+
+  local remote="${1:-origin}"
+  local report="$(git-branch-status "$remote")"
+  echo "$report"
+
+  local branches=()
+  while IFS= read -r line; do
+    line="${line#  }"
+    line="${line%% \(*}"
+    [ -n "$line" ] && branches+=("$line")
+  done < <(echo "$report" | sed -n '/=== Merged remotely/,/^$/p' | grep '^  ')
+
+  if [ "${#branches[@]}" -eq 0 ]; then
+    echo "Nothing to delete."
+    return 0
+  fi
+
+  echo
+  echo "About to delete: ${branches[*]}"
+  printf "Proceed? [y/N] "
+  read -r confirm
+  if [[ "$confirm" != [yY] ]]; then
+    echo "Aborted."
+    return 0
+  fi
+
+  for b in "${branches[@]}"; do
+    if [ "$b" = "$(git branch --show-current)" ]; then
+      echo "Skipping '$b' — currently checked out. Switch branches first, then rerun." >&2
+      continue
+    fi
+    git branch -d "$b" || git branch -D "$b"
+  done
+}
