@@ -50,6 +50,8 @@
 	uncommit = reset HEAD^1
 	## @git Stage everything and commit as "WIP"
 	wip = !git add -A && git commit -m "WIP"
+	## @git Commit staged changes as a fixup for commit{1} and immediately autosquash it in
+	fixup = "!f() { git commit --fixup \"$1\" && git rebase --autosquash --autostash \"$1~1\"; }; f"
 
 [push]
 	default = simple
