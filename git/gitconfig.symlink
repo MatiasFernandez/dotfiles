@@ -72,3 +72,6 @@
 	helper = !/opt/homebrew/bin/gh auth git-credential
 [core]
 	excludesfile = /Users/matyf/.gitignore_global
+[user]
+	name = Matias Fernandez
+	email = 7898112+MatiasFernandez@users.noreply.github.com
