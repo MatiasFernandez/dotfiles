@@ -162,6 +162,9 @@ install_dotfiles () {
     link_file "$DOTFILES_ROOT/homebrew/Brewfile" "$HOME/.config/brewfile/Brewfile"
   fi
 
+  mkdir -p "$HOME/.config/atuin"
+  link_file "$DOTFILES_ROOT/atuin/config.toml" "$HOME/.config/atuin/config.toml"
+
   if [ "$SETUP_BASH" == "true" ]; then
     if [ `fgrep -c "bashrc.mine" ~/.bashrc 2>/dev/null` -eq 0 ]; then
       echo "source ~/.bashrc.mine" >> ~/.bashrc

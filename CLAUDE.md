@@ -17,6 +17,7 @@ bash/          # bashrc.mine.symlink, bash.bash, init.bash, gitprompt submodule
 dev/           # rails, heroku, pnpm, python, localstack, docker, sqitch, misc, pryrc.symlink
 homebrew/      # Brewfile, init.src (brew-wrap)
 zoxide/        # init.zsh, init.bash
+atuin/         # config.toml (linked to ~/.config/atuin/ by bootstrap.sh, not via .symlink)
 networking/    # networking.src (latmon, latofi, publicip)
 utils/         # utils.src, fns.src (the fns picker)
 bootstrap.sh   # Main install script
